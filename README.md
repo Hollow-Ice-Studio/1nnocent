@@ -1,6 +1,8 @@
 
 # 1nnocent
-A Battle Royale's character story made in Unity3D by brazilian game students.
+### A Battle Royale's character story made in Unity3D by brazilian game students.
+
+###### Unity version: _2019.3.15f1_
 
 Olá! Somos a Hollow Ice Studio e temos alguns avisos antes de você testar esse protótipo:
 
@@ -22,8 +24,8 @@ Problemas conhecidos:
 - É possível entrar na área dos alvos no estande de tiro.
 
 É possível entrar em contato com a gente pelos seguintes canais:
-Email: hollowicestudio@gmail.com
-Twitter: twitter.com/HollowIceStudio
+* Email: hollowicestudio@gmail.com
+* Twitter: https://twitter.com/HollowIceStudio
 
 
 <p align="center">
