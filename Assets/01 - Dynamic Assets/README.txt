@@ -1,0 +1,1 @@
+Prefabs instanciadas dinâmicamente vão na pasta "Resources"

@@ -1,0 +1,46 @@
+Prefixos
+
+por uso
+CH_ Character
+UI_ User Interface
+VH_ Vehicles
+WP_ Weapons
+
+por tipo
+BP_ Blueprint
+PFB_Prefab
+SK_ Skeleton
+SM_ <Apix?> Static Mesh
+AD_ <Apix?> Destructable Asset
+AC_ Cloth Asset
+MT_ Mesh Target
+ST_ Speed True
+PS_ Particle System
+LF_ <?>
+VF_ Vector Field
+S_  Sound
+SC_ Sound Cue
+M_  Material
+MI_ Material Instance
+MITV_ Material Instance Time <?>
+MF_ Material Function
+MPC_ Material Parameter Collector
+T_ Texture
+SP_ Sprite
+SS_ Sprite Sheet
+TC_ Texture Cube
+RT_ Render Target
+PM_ Physical Material
+
+Sufixo (para Textura)
+_BC Base Color
+_MT Metallic
+_S  Specular
+_R  Roughness
+_N  Normal
+_DP Displacement
+_AO Ambient Occlusion
+_H  Height Map
+_FM <?>
+_L Light Map
+_M Mask
