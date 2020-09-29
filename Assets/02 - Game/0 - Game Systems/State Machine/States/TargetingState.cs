@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TheLiquidFire.Notifications;
 using UnityEngine;
 
-namespace panorama
+namespace onennocent
 {
     public class TargetingState : State
     {

@@ -4,21 +4,17 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 
-namespace panorama
+namespace onennocent
 {
     public class GameController : MonoBehaviour
     {
-
         #region Const
         private const string SYSTEMS_PATH = "Prefabs/Game Systems/";
         #endregion
 
         #region Properties
-        public Character character { get; private set; }
-        public Inventory inventory { get; private set; }
         protected List<IGameSystem> activeSystems { get; private set; }
         protected Dictionary<string, GameSystem> gameSystems = new Dictionary<string, GameSystem>();
-
         private StateMachine stateMachine;
         public StateMachine StateMachine
         {
@@ -37,34 +33,52 @@ namespace panorama
         #region MonoBehaviour
         void Awake()
         {
+            Build();
+        }
+
+        void Update()
+        {
+            ExecuteActiveSystemsLogicRoutine();
+        }
+
+        void FixedUpdate()
+        {
+            ExecuteActiveSystemsPhysicsRoutine();
+        }
+        #endregion
+
+        #region Custom methods
+        void Build()
+        {
             systemHolder = GetComponentInChildren<Transform>();
             GameFactory.Create(this);
-
+            DisableAllGameSystems();
+            StateMachine.Initialize(new IdleState(this, StateMachine));
+        }
+        void DisableAllGameSystems()
+        {
             for (int i = 0; i < GetSystems().Count - 1; i++)
             {
                 GetSystems()[i].gameObject.SetActive(false);
             }
-
-            character = (Character) FindObjectOfType(typeof(Character));//Mudar para findByTag
-            inventory = GetComponentInChildren<Inventory>(true);
-            StateMachine.Initialize(new IdleState(this, StateMachine));
         }
+        
 
-        private void Update()
+        void ExecuteActiveSystemsPhysicsRoutine()
         {
             activeSystems = new List<IGameSystem>(GetComponentsInChildren<IGameSystem>());
+            foreach (IGameSystem system in activeSystems)
+                system.PhysicsRoutine();
+        }
 
+        void ExecuteActiveSystemsLogicRoutine()
+        {
+            activeSystems = new List<IGameSystem>(GetComponentsInChildren<IGameSystem>());
             foreach (IGameSystem system in activeSystems)
                 system.LogicRoutine();
         }
 
-        private void FixedUpdate()
-        {
-            activeSystems = new List<IGameSystem>(GetComponentsInChildren<IGameSystem>());
-
-            foreach (IGameSystem system in activeSystems)
-                system.PhysicsRoutine();
-        }
+        
 
         public void InstantiateSystems<T>() where T : IGameSystem
         {

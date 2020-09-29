@@ -1,28 +1,39 @@
-﻿using panorama;
+﻿using onennocent;
 using System.Collections;
 using System.Collections.Generic;
+using TheLiquidFire.Notifications;
 using UnityEngine;
 
-namespace panorama
+namespace onennocent
 {
     public class CharacterAnimationSystem : GameSystem
     {
         #region Properties
         Character character;
-        Rigidbody2D rigid;
-        Animator movementAnimator;
+        #region Const
+        private const string MouseLeftNotification = Notification.MOUSE_LEFT_INPUT_NOTIFICATION;
         #endregion
-
         #region Serializable Fields
-        //TODO: 
+
+        #endregion
         #endregion
 
         #region MonoBehaviour
         void Start()
         {
-            character = gameController.character;
-            rigid = character.Rb2d;
-            movementAnimator = character.characterAnimator;
+            Build();
+        }
+
+        void OnEnable()
+        {
+            this.AddObserver(TriggerAnimationOnNotification, "Notification");
+            this.AddObserver(SetBoolTransitionOnNotification, "Notification");
+        }
+
+        void OnDisable()
+        {
+            this.RemoveObserver(SetBoolTransitionOnNotification, "Notification");
+            this.RemoveObserver(SetBoolTransitionOnNotification, "Notification");
         }
         #endregion
 
@@ -35,30 +46,39 @@ namespace panorama
 
         public override void LogicRoutine()
         {
-            if (Input.GetButton("Run"))
-                movementAnimator.SetBool("isCrouching", false);
-            else if (Input.GetButton("Crouch"))
-                movementAnimator.SetBool("isCrouching", true);
-            else
-                movementAnimator.SetBool("isCrouching", false);
+            DecideAnimationExecution();
         }
         #endregion
-
-        #region CustomMethods
-        void Animate()
+        
+        #region Notification Handler
+        void TriggerAnimationOnNotification(object sender, object args)
         {
-            movementAnimator.SetFloat("HorizontalVelocity", rigid.velocity.x);
-            movementAnimator.SetFloat("VerticalVelocity", rigid.velocity.y);
-            bool isWalking = Mathf.Abs(rigid.velocity.x) > 0;
-            movementAnimator.SetBool("isWalking", isWalking);
-            bool isRunning = Mathf.Abs(rigid.velocity.x) > 2;
-            movementAnimator.SetBool("isRunning", isRunning);
-            if (rigid.velocity.x > 0.5)
-                character.FlipSpriteDirection(true);
-            else if (rigid.velocity.x < -0.5)
-                character.FlipSpriteDirection(false);
+            GetComponent<Animator>().SetTrigger(args as string);
+        }
+        void SetBoolTransitionOnNotification(object sender, object args)
+        {
+            GetComponent<Animator>().SetBool(args as string,true);
         }
 
+        void PlayAnimationOnNotification(object sender, object args)
+        {
+            GetComponent<Animator>().Play(args as string, 0);
+        }
+        #endregion
+        #region CustomMethods
+        private void Build()
+        {
+            
+        }
+        
+        void Animate()
+        {
+            
+        }
+        void DecideAnimationExecution()
+        {
+           
+        }
         #endregion
     }
 }

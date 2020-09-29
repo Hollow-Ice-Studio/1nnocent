@@ -1,23 +1,20 @@
-﻿using panorama;
+﻿using onennocent;
 using System.Collections;
 using System.Collections.Generic;
+using TheLiquidFire.Notifications;
 using UnityEngine;
 
-namespace panorama
+namespace onennocent
 {
     public class CharacterMovementSystem : GameSystem
     {
         #region Properties
-        Character character;
-        float horizontalSpeed;
-        float characterHorizontalScale;
-        #endregion
-
+        string NotificationName;
         #region Serializable Fields
         [Header("Character speed in unit per second")]
         // [Valores de referência] Caminhada:  1.3m/s; Trotar: > 1.6m/s; Correr: > 2.6m/s
         [SerializeField]
-        [Range(0, 10)] 
+        [Range(0, 10)]
         float walkSpeed = 1.5f;
         [SerializeField]
         [Range(0, 10)]
@@ -26,12 +23,20 @@ namespace panorama
         [Range(0, 10)]
         float crawlingSpeed = 0.8f;
         #endregion
+        #endregion
 
         #region MonoBehaviour
         void Start()
         {
-            character = gameController.character;
-            characterHorizontalScale = character.transform.lossyScale.x;
+            CacheReferences();
+        }
+        private void OnEnable()
+        {
+            AddObservers();
+        }
+        void OnDisable()
+        {
+            RemoveObservers();
         }
         #endregion
 
@@ -44,27 +49,43 @@ namespace panorama
 
         public override void LogicRoutine()
         {
-            UpdateSpeed();
+            UpdateSpeedModeBasedOnInput();
             UpdateDirection();
         }
         #endregion
 
-        #region CustomMethods
-        void UpdateSpeed()
+        #region Notification Handler
+        void ActionOnNotification(object sender, object args)
         {
-            horizontalSpeed = Input.GetButton("Run") ? runSpeed :
-                                (Input.GetButton("Crouch") ? crawlingSpeed : walkSpeed);
-            horizontalSpeed *= characterHorizontalScale;
+            
+        }
+        #endregion
+
+        #region CustomMethods
+        void AddObservers()
+        {
+            this.AddObserver(ActionOnNotification, NotificationName);
+        }
+        void RemoveObservers()
+        {
+            this.RemoveObserver(ActionOnNotification, NotificationName);
+        }
+        void CacheReferences()
+        {
+            
+        }
+        void UpdateSpeedModeBasedOnInput()
+        {
+            
         }
         void UpdateDirection()
         {
-            float moveX = Input.GetAxis("Horizontal");
-            horizontalSpeed *= moveX;
+            
         }
 
         void Move()
         {
-            character.Rb2d.velocity = new Vector2(horizontalSpeed, 0);
+            
         }
         #endregion
     }

@@ -1,6 +1,6 @@
 ﻿
 
-namespace panorama
+namespace onennocent
 {
     public static class Notification
     {

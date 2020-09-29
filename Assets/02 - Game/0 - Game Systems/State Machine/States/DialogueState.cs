@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace panorama
+namespace onennocent
 {
     public class DialogueState : State
     {

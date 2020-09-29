@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace panorama
+namespace onennocent
 {
     public abstract class GameSystem : MonoBehaviour, IGameSystem
     {

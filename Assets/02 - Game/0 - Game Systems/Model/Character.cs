@@ -3,35 +3,28 @@ using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
 
-namespace panorama
+namespace onennocent
 {
-    [RequireComponent(typeof(SpriteRenderer), typeof(Rigidbody2D), typeof(Animator))]
+    [RequireComponent(typeof(AnimatorController))]
     public class Character : MonoBehaviour
     {
         #region Properties
-        Rigidbody2D _rb2d;
-        public Rigidbody2D Rb2d { get { return _rb2d; } }
-        public Animator characterAnimator;
-        #endregion
-
+        Animator CharacterAnimator;
         #region Serializable Fields
-        //TODO: Pensar em como gerenciar multicontroller
-        //[SerializeField]
-        //AnimatorController[] animatorControllers;
+        #endregion
         #endregion
 
         #region MonoBehaviour
-        void Awake()
+        void Start()
         {
-            characterAnimator = GetComponent<Animator>();
-            _rb2d = GetComponent<Rigidbody2D>();
+            Build();
         }
         #endregion
 
         #region CustomMethods
-        public void FlipSpriteDirection(bool isFlipped)
+        void Build()
         {
-            GetComponent<SpriteRenderer>().flipX = isFlipped;
+            CharacterAnimator = GetComponent<Animator>();
         }
         #endregion
         

@@ -1,6 +1,6 @@
 ﻿using TheLiquidFire.Notifications;
 
-namespace panorama
+namespace onennocent
 {
     public class InventoryState : State
     {
