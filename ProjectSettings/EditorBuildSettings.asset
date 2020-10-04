@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/03 - Scenes/MainScreen.unity
+    guid: 99bce9ed41f357843ad1d2c4a6622269
+  - enabled: 1
+    path: Assets/03 - Scenes/BlockageLevel.unity
+    guid: eac2b2b776c8e6342a9aa71168030a1f
+  - enabled: 1
+    path: Assets/03 - Scenes/CenarioDeTestes.unity
+    guid: 0c50370da149f5f4f8ae4e0397f0910a
+  - enabled: 1
+    path: Assets/03 - Scenes/SampleScene.unity
+    guid: 5e3bd2689c990304e8f61b7d3dce022b
   m_configObjects: {}
