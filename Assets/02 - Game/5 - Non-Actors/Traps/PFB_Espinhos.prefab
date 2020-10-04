@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 3365632961485206540}
   - component: {fileID: 3365632961485206539}
   - component: {fileID: 3365632961485206538}
-  - component: {fileID: 3365632961485206541}
+  - component: {fileID: 462220903}
   m_Layer: 0
   m_Name: AreaMorte
   m_TagString: Enemy
@@ -251,7 +251,7 @@ Transform:
   m_GameObject: {fileID: 3365632961485206543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.02, y: -0, z: 0}
-  m_LocalScale: {x: 2.2564507, y: 2.6739, z: 2.4479284}
+  m_LocalScale: {x: 1, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 3365632961341734894}
   m_RootOrder: 0
@@ -263,7 +263,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3365632961485206543}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 576f9d57819b3c1409b9fa83454cc281, type: 3}
 --- !u!23 &3365632961485206538
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -303,8 +303,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3365632961485206541
-BoxCollider:
+--- !u!64 &462220903
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -313,9 +313,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 576f9d57819b3c1409b9fa83454cc281, type: 3}
 --- !u!1 &3365632962459626864
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,7 +327,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3365632962459626865}
   m_Layer: 0
-  m_Name: PFB_Espinhos 1
+  m_Name: PFB_Espinhos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -339,11 +340,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3365632962459626864}
-  m_LocalRotation: {x: 0.000000059604645, y: 0.7071068, z: 0.000000059604645, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.70710677}
   m_LocalPosition: {x: 2.71, y: 1.71, z: 26.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3365632961341734894}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
