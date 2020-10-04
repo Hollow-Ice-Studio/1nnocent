@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 2817799611293244789}
   - component: {fileID: 2817799611293244785}
   - component: {fileID: 2817799611293244784}
-  - component: {fileID: 2817799611293244786}
+  - component: {fileID: 1125304250500186519}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: TurretBullet
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,7 +124,7 @@ ConstantForce:
   m_RelativeForce: {x: 0, y: 0, z: 150}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
---- !u!114 &2817799611293244786
+--- !u!114 &1125304250500186519
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,6 +133,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2817799611293244779}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d607ebc6066618a42b27bdb13ed7f172, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f9da2e8a02ba2f4893e8ce763d1c6e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeToAutoDestruction: 0.5

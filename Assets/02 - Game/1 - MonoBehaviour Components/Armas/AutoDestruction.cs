@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bala_Destroi : MonoBehaviour
+public class AutoDestruction : MonoBehaviour
 {
-
+    [SerializeField]
+    [Range(0,5)]
+    float timeToAutoDestruction;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +16,6 @@ public class Bala_Destroi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Destroy(this.gameObject, 0.5f);
+        Destroy(this.gameObject, timeToAutoDestruction);
     }
 }
