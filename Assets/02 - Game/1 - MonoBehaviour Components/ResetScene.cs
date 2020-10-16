@@ -8,7 +8,10 @@ public class ResetScene : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.Log("Scene Reseted");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Debug.Log("Scene Reseted");
+        }
+        
     }
 }

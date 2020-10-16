@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace onennocent
+namespace innocent
 {
     public abstract class State
     {

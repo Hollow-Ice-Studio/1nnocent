@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using TheLiquidFire.Notifications;
 using UnityEngine;
 
-namespace onennocent
+namespace innocent
 {
     public class InputController : MonoBehaviour
     {
 
         [SerializeField] private static readonly string[] buttons = 
-            {"Fire1", "Fire2"};
+            {ConfiguredButtonNames.SHOOT};
 
         void Update()
         {

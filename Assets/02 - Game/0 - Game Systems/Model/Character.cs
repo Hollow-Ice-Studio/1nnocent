@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
 
-namespace onennocent
+namespace innocent
 {
     [RequireComponent(typeof(AnimatorController))]
     public class Character : MonoBehaviour
     {
         #region Properties
-        Animator CharacterAnimator;
-        #region Serializable Fields
-        #endregion
+        Animator _characterAnimator;
+        public Animator CharacterAnimator { get => _characterAnimator;}
         #endregion
 
         #region MonoBehaviour
@@ -24,7 +23,7 @@ namespace onennocent
         #region CustomMethods
         void Build()
         {
-            CharacterAnimator = GetComponent<Animator>();
+            _characterAnimator = GetComponent<Animator>();
         }
         #endregion
         

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace onennocent
+namespace innocent
 {
     public abstract class GameSystem : MonoBehaviour, IGameSystem
     {

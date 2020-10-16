@@ -1,6 +1,6 @@
 ﻿using TheLiquidFire.Notifications;
 
-namespace onennocent
+namespace innocent
 {
     public class InventoryState : State
     {

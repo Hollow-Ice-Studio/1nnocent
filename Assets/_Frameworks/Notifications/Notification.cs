@@ -1,9 +1,15 @@
 ﻿
 
-namespace onennocent
+namespace innocent
 {
     public static class Notification
     {
+        //HUD System
+        public const string HUD_WRITE = "HudSystemNotification.Write";
+        //Animation System
+        public const string ANIMATION_PLAY = "AnimationSystemNotification.Play";
+        //VictoryCondition System
+        public const string VICTORY_INC_SCORE = "VictoryCondition.IncrementScore";
         // State Machine
         public const string ENTER_INVENTORY_STATE_NOTIFICATION = "StateNotification.OpenInventory";
         public const string EXIT_INVENTORY_STATE_NOTIFICATION  = "StateNotificaiton.CloseInventory";

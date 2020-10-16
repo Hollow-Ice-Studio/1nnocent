@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 
-namespace onennocent
+namespace innocent
 {
     public class GameController : MonoBehaviour
     {
@@ -82,15 +82,23 @@ namespace onennocent
 
         public void InstantiateSystems<T>() where T : IGameSystem
         {
-            GameSystem gameSystem = GetComponentInChildren<T>() as GameSystem;
-
-            if (gameSystem == null)
+            try
             {
-                GameObject gameSystemObj = Instantiate(Resources.Load<GameObject>($"{SYSTEMS_PATH}{typeof(T).Name}"), systemHolder);
-                gameSystem = gameSystemObj.GetComponent<GameSystem>();
+                GameSystem gameSystem = GetComponentInChildren<T>() as GameSystem;
+
+                if (gameSystem == null)
+                {
+                    GameObject gameSystemObj = Instantiate(Resources.Load<GameObject>($"{SYSTEMS_PATH}{typeof(T).Name}"), systemHolder);
+                    gameSystem = gameSystemObj.GetComponent<GameSystem>();
+                }
+                gameObject.LogSystemAdded(typeof(T).Name);
+                gameSystems.Add(typeof(T).Name, gameSystem);
             }
-            Debug.Log($"Add System: {typeof(T).Name}");
-            gameSystems.Add(typeof(T).Name, gameSystem);
+            catch
+            {
+                throw new GameSystemInstantiationException(typeof(T).Name);
+            }
+            
         }
 
         public T GetSystem<T>() where T : GameSystem
@@ -128,8 +136,8 @@ namespace onennocent
             public static void Create(GameController gameController)
             {
                 gameController.InstantiateSystems<CharacterAnimationSystem>();
-                gameController.InstantiateSystems<CharacterMovementSystem>();
-                gameController.InstantiateSystems<CollectableSystem>();
+                gameController.InstantiateSystems<HudSystem>();
+                gameController.InstantiateSystems<VictoryConditionSystem>();
             }
         }
     }

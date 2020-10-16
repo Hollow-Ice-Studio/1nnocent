@@ -1,78 +1,86 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TheLiquidFire.Notifications;
 using UnityEngine;
 using UnityEngine.UI;
-
-[RequireComponent(typeof(AudioSource))]
-public class GunController : MonoBehaviour
+namespace innocent
 {
-    [SerializeField]
-    Transform gunTarget, bulletHole,character;
-    [SerializeField]
-    Text ammoUiTextElement;
-    public float impulse = 50, distance = 1000, totalAmmo = 16, currentAmmo = 0;//abstrair info de multiplas armas
-    public string gunDescription;
-    AudioSource[] gunAudioSource;
-    void Awake()
+    [RequireComponent(typeof(AudioSource))]
+    public class GunController : MonoBehaviour
     {
-        gunAudioSource = GetComponents<AudioSource>();
-        UpdateAmmoUI();
-    }
+        [SerializeField] Gun gun;
+        [SerializeField] Transform bulletHole;
 
-    void Update()
-    {
-        character.LookAt(gunTarget);
-        Debug.DrawRay(bulletHole.position, transform.forward * 10, Color.green);
-        if (Input.GetMouseButtonDown(0))
+        AudioSource audioSource;
+        const string
+            EnemyLayerMask = "Enemy",
+            TargetTagName = "Target",
+            UntaggedTagName = "Untagged";
+
+        #region Mono Behaviour
+        void Awake() => Build();
+        
+        void Update()
         {
-            UpdateAmmoUI();
+            Debug.DrawRay(bulletHole.position, transform.forward * 10, Color.green);
+            if (Input.GetButtonDown(ConfiguredButtonNames.SHOOT))
+                TryShoot();
         }
-    }
+        #endregion
 
-    public void Shoot()
-    {
-        LayerMask enemyMask = LayerMask.GetMask("Enemy");
-        Ray ray = new Ray(bulletHole.position, transform.forward);
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, distance))
+        void Build()
         {
-            var collided = hitInfo.collider;
-            var rb = collided.GetComponent<Rigidbody>();
-            if (rb)
-                rb.AddForce(hitInfo.normal * impulse * -1);
-            if (collided.tag == "Target")
+            audioSource = GetComponent<AudioSource>();
+        }
+        public void PlayShootSound()
+        {
+            audioSource.clip = gun.shootingSound;
+            audioSource.Play();
+        }
+        public void PlayReloadingSound()
+        {
+            audioSource.clip = gun.reloadingSound;
+            audioSource.Play();
+        }
+
+        void TryShoot()
+        {
+            if (gun.currentAmmo <= 0)
             {
-                Debug.Log("Target Shooted");
-                var vic = GetComponent<VictoryCondition>();
-                collided.tag = "Untagged";
-                var material = collided.GetComponent<MeshRenderer>().material;
-                material.color = new Color(0, 1, 0);
-                vic.IncreaseTarget();
+                gun.currentAmmo = gun.totalAmmo;
+                PlayReloadingSound();
+            }
+            else
+            {
+                gun.currentAmmo--;
+                PlayShootSound();
+                Shoot();
+            }
+            var description = $"{gun.description} {gun.currentAmmo}/{gun.totalAmmo}";
+            this.PostNotification(Notification.HUD_WRITE, description);
+        }
+
+        public void Shoot()
+        {
+            LayerMask enemyMask = LayerMask.GetMask(EnemyLayerMask);
+            Ray ray = new Ray(bulletHole.position, transform.forward);
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, gun.distance))
+            {
+                var inverseHittedFaceDirection = hitInfo.normal * gun.impulse * -1;
+                var collidedCollider = hitInfo.collider;
+                var collidedRigidBody = collidedCollider?.GetComponent<Rigidbody>();
+                if(collidedRigidBody) collidedRigidBody.AddForce(inverseHittedFaceDirection); 
+                if (collidedCollider?.tag == TargetTagName)
+                {
+                    
+                    collidedCollider.tag = UntaggedTagName;
+                    //todo: tranformar em propriedade privada e cacheada
+                    MaterialPropertyBlock materialPropertyBlock = new MaterialPropertyBlock();
+                    materialPropertyBlock.SetColor("_Color", new Color(0, 1, 0));
+                    collidedCollider.GetComponent<MeshRenderer>().SetPropertyBlock(materialPropertyBlock);
+                    this.PostNotification(Notification.VICTORY_INC_SCORE);
+                }
             }
         }
-    }
-
-    void PlayShootSound()
-    {
-        gunAudioSource[0].Play();
-    }
-    void PlayReloadingSound()
-    {
-        gunAudioSource[1].Play();
-    }
-
-    void UpdateAmmoUI()
-    {
-        if (currentAmmo == 0)
-        {
-            currentAmmo = totalAmmo;
-            PlayReloadingSound();
-        }
-        else
-        {
-            currentAmmo--;
-            PlayShootSound();
-            Shoot();
-        }
-        ammoUiTextElement.text = $"{gunDescription} {currentAmmo}/{totalAmmo}";
     }
 }

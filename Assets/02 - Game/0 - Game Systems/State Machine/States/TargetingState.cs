@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TheLiquidFire.Notifications;
 using UnityEngine;
 
-namespace onennocent
+namespace innocent
 {
     public class TargetingState : State
     {

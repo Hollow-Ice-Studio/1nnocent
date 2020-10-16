@@ -1,57 +1,49 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TheLiquidFire.Notifications;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class PickableObjectController : MonoBehaviour
+namespace innocent
 {
-    [SerializeField]
-    GameObject pickablePrefabVersion;
-    [SerializeField]
-    GameObject equipablePrefabVersion;
-    [SerializeField]
-    Text uiTextElement;
-    [SerializeField]
-    KeyCode buttonToPick;
-    public string showText;
+    public class PickableObjectController : MonoBehaviour
+    {
+        [SerializeField]
+        GameObject pickablePrefabVersion;
+        [SerializeField]
+        GameObject equipablePrefabVersion;
+        [SerializeField]
+        KeyCode buttonToPick;
+        public string showText;
 
-    private bool isInside = false;
-    // Start is called before the first frame update
-    void Awake()
-    {
-        uiTextElement.text = "";
-    }
+        private bool isInside = false;
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
+        void OnTriggerEnter(Collider other)
         {
-            isInside = true;
-            uiTextElement.text = $"{showText}\n [{buttonToPick.ToString()}]";
+            if (other.tag == "Player")
+            {
+                isInside = true;
+                this.PostNotification(Notification.HUD_WRITE,
+                    $"{showText}\n [{buttonToPick.ToString()}]");
+            }
         }
-    }
-    void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
+        void OnTriggerExit(Collider other)
         {
-            isInside = false;
-            uiTextElement.text = "";
+            if (other.tag == "Player")
+            {
+                isInside = false;
+                this.PostNotification(Notification.HUD_WRITE,"");
+            }
         }
-    }
-    void OnTriggerStay(Collider other)
-    {
-        if(isInside && Input.GetKeyDown(buttonToPick))
+        void OnTriggerStay(Collider other)
         {
-            uiTextElement.text = "";
-            var weaponSlot = other.GetComponent<ThirdPersonWeaponSlotsController>();
-            weaponSlot.ChangeWeapon(equipablePrefabVersion, pickablePrefabVersion);
-            GameObject.Destroy(this.gameObject);
+            if (isInside && Input.GetKey(buttonToPick))
+            {
+                this.PostNotification(Notification.HUD_WRITE, "");
+                var weaponSlot = other.GetComponent<ThirdPersonWeaponSlotsController>();
+                weaponSlot.ChangeWeapon(equipablePrefabVersion, pickablePrefabVersion);
+                Destroy(gameObject);
+            }
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
 

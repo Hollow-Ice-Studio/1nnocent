@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+namespace innocent
 {
-    // Start is called before the first frame update
-    void Start()
+    [CreateAssetMenu(fileName = "Gun", menuName = "Onennocent/Gun", order = 1)]
+    public class Gun : ScriptableObject
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public string
+            description;
+        public float
+            impulse = 50,
+            distance = 1000,
+            totalAmmo = 16,
+            currentAmmo = 0;
+        public AudioClip
+            shootingSound,
+            reloadingSound;
     }
 }

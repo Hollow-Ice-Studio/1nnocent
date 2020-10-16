@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 using TheLiquidFire.Notifications;
 
-namespace onennocent
+namespace innocent
 {
     public class Inventory : MonoBehaviour
     {

@@ -1,66 +1,73 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-[RequireComponent(typeof(Rigidbody))]
-public class ThirdPersonCharacterController : MonoBehaviour
+namespace innocent
 {
-    public float speed= 1, jumpHeight=1;
-
-    public bool isgrounded;
-    float beamdistance;
-    Rigidbody rig;
-
-    void Start()
+    [RequireComponent(typeof(Rigidbody))]
+    public class ThirdPersonCharacterController : MonoBehaviour
     {
-        rig = GetComponent<Rigidbody>();
-        beamdistance = transform.localScale.y + .2f;
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        PlayerMovement();
-        IsPlayerOnGround();
-        Debug.DrawRay(transform.position + (transform.up * beamdistance), -transform.up * beamdistance*2, Color.red);
-    }
+        #region Properties
+        public float
+            speed = 1,
+            jumpHeight = 1;
+        public bool IsGrounded;
+        float beamdistance;
+        Rigidbody rig;
+        #endregion
 
-    void PlayerMovement() {
-        float z_move = Input.GetAxis("Vertical");
-        float x_move = Input.GetAxis("Horizontal");
-        Vector3 vect3 = new Vector3(x_move, 0f, z_move);
-        vect3.Normalize();
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            transform.Translate(vect3 * Time.deltaTime * speed * 2, Space.Self);
-        }
-        else
-        {
-            transform.Translate(vect3 * Time.deltaTime * speed, Space.Self);
-        }
-        
-    }
+        #region Mono Behaviour
+        void Start() => Build();
 
-    //Esse método é ativado a partir da animação de pulo
-    private void PlayerJumpByAnimation()
-    {
-        //nao necessita de getKey no método de pulo se estiver ativando via animação
-        if (isgrounded)
+        void Update()
         {
-            Debug.Log(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y));
-            rig.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+            AppointGrounded();
+            PlayerMovement();
+            Debug.DrawRay(transform.position + (transform.up * beamdistance), -transform.up * beamdistance * 2, Color.red);
         }
-    }
+        #endregion
 
-    private void IsPlayerOnGround()
-    {
-        RaycastHit beam;
-        if (Physics.Raycast(transform.position + (transform.up * beamdistance), -transform.up, out beam, beamdistance * 2))
+        void Build()
         {
-            isgrounded = true;
+            rig = GetComponent<Rigidbody>();
+            beamdistance = transform.localScale.y + .2f;
         }
-        else
+        void PlayerMovement()
         {
-            isgrounded = false;
+            float z_move = Input.GetAxis(ConfiguredButtonNames.VerticalAxisName);
+            float x_move = Input.GetAxis(ConfiguredButtonNames.HorizontalAxisName);
+            Vector3 vect3 = new Vector3(x_move, 0f, z_move);
+            vect3.Normalize();
+            if (Input.GetButton(ConfiguredButtonNames.RUN))
+            {
+                transform.Translate(vect3 * Time.deltaTime * speed * 2, Space.Self);
+            }
+            else
+            {
+                transform.Translate(vect3 * Time.deltaTime * speed, Space.Self);
+            }
+
+        }
+
+        //Esse método é ativado a partir da animação de pulo
+        private void PlayerJumpTriggeredByAnimation()
+        {
+            //nao necessita de getKey no método de pulo se estiver ativando via animação
+            if (IsGrounded)
+            {
+                var forceDirection = Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y);
+                Debug.Log(forceDirection);
+                rig.AddForce(forceDirection, ForceMode.VelocityChange);
+            }
+        }
+
+        private void AppointGrounded()
+        {
+            var origin = transform.position + (transform.up * beamdistance);
+            if (Physics.Raycast(
+                    origin, -transform.up, beamdistance * 2))
+                IsGrounded = true;
+            else
+                IsGrounded = false;
         }
     }
 }

@@ -1,10 +1,10 @@
-﻿using onennocent;
+﻿using innocent;
 using System.Collections;
 using System.Collections.Generic;
 using TheLiquidFire.Notifications;
 using UnityEngine;
 
-namespace onennocent
+namespace innocent
 {
     public class CharacterMovementSystem : GameSystem
     {

@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 3985556132107120365}
   - component: {fileID: 114596316850379978}
   m_Layer: 0
-  m_Name: Equipable_Glock
+  m_Name: EquipableGlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -419,15 +419,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 668c2a8cd43b97b4d92c9ffe0114705c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gun: {fileID: 11400000, guid: 0301f4846c9e2c14c9009b800ca0de92, type: 2}
   gunTarget: {fileID: 0}
   bulletHole: {fileID: 1811876112892818906}
   character: {fileID: 1811876112892818898}
-  ammoUiTextElement: {fileID: 1428876294}
-  impulse: 50
-  distance: 1000
-  totalAmmo: 16
-  currentAmmo: 0
-  gunDescription: Glock
 --- !u!114 &114596316850379978
 MonoBehaviour:
   m_ObjectHideFlags: 0
