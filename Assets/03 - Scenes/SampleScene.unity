@@ -1205,8 +1205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d27d1f8810d954ea6c3ed6754956db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationActivators: []
-  aimRotation: {fileID: 0}
 --- !u!1 &172213675
 GameObject:
   m_ObjectHideFlags: 0
@@ -10033,10 +10031,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1517672443, guid: 8305a41349bc1a54dba90a985635c1de, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.00012207031
-      objectReference: {fileID: 0}
     - target: {fileID: 1517672444, guid: 8305a41349bc1a54dba90a985635c1de, type: 3}
       propertyPath: m_Material
       value: 
