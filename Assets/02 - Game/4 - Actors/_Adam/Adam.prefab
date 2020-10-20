@@ -339,11 +339,10 @@ GameObject:
   - component: {fileID: 7697328793335612680}
   - component: {fileID: 299482894}
   - component: {fileID: 299482890}
-  - component: {fileID: 299482893}
   - component: {fileID: 483167560}
   - component: {fileID: 483167561}
   m_Layer: 0
-  m_Name: prefab_Adam
+  m_Name: Adam
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -468,25 +467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   jumpHeight: 1
-  isgrounded: 0
---- !u!114 &299482893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2223710885216284296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebbc42bbf8cd58a41ae7999b7ea9d811, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animationsTriggers:
-  - eventTriggerKey: 306
-    animationName: isCrounch
-  - eventTriggerKey: 304
-    animationName: isRunning
-  aimRotation: {fileID: 778904806}
+  IsGrounded: 0
 --- !u!114 &483167560
 MonoBehaviour:
   m_ObjectHideFlags: 0
