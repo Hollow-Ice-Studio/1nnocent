@@ -15,18 +15,18 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 0
-  m_FogColor: {r: 1, g: 0.9886443, b: 0.9386792, a: 1}
+  m_FogColor: {r: 0.22352943, g: 0.28627452, b: 0.35686275, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.04
-  m_LinearFogStart: 153
-  m_LinearFogEnd: 200
+  m_LinearFogStart: 50
+  m_LinearFogEnd: 150
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: c82a334cf5a5e47978749c210cee72a7, type: 2}
   m_HaloStrength: 0
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -21397,6 +21397,22 @@ PrefabInstance:
     - target: {fileID: 16477542, guid: 59f5283e69f5eea4fadbaeb3c318e0a2, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 16477546, guid: 59f5283e69f5eea4fadbaeb3c318e0a2, type: 3}
+      propertyPath: m_ClearFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 16477546, guid: 59f5283e69f5eea4fadbaeb3c318e0a2, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.26415092
+      objectReference: {fileID: 0}
+    - target: {fileID: 16477546, guid: 59f5283e69f5eea4fadbaeb3c318e0a2, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.26415092
+      objectReference: {fileID: 0}
+    - target: {fileID: 16477546, guid: 59f5283e69f5eea4fadbaeb3c318e0a2, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.26415092
       objectReference: {fileID: 0}
     - target: {fileID: 299482890, guid: 59f5283e69f5eea4fadbaeb3c318e0a2, type: 3}
       propertyPath: speed
