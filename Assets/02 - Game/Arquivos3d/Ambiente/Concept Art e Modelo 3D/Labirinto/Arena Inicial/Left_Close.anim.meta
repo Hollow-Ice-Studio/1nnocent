@@ -1,6 +1,12 @@
 fileFormatVersion: 2
-guid: 0c52237a9696d244fb6d76fe76bc3b03
+<<<<<<< HEAD:Assets/02 - Game/Arquivos3d/Ambiente/Concept Art e Modelo 3D/Labirinto/Arena Inicial/Left_Close.anim.meta
+guid: 7dad8c94dc401494fae8e4a2b5ff2f2b
 NativeFormatImporter:
+=======
+guid: 82647039e765e7445974fa1aaaa2307f
+folderAsset: yes
+DefaultImporter:
+>>>>>>> parent of 41c9cbf... Revert "Game Assets(Chao4x4, Coluna e Canaleta de ferro)":Assets/02 - Game/Arquivos3d/Ambiente/Concept Art e Modelo 3D/Labirinto/BarrasFerro.meta
   externalObjects: {}
   mainObjectFileID: 0
   userData: 
