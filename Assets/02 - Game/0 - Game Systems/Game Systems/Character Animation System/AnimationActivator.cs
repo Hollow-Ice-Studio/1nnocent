@@ -3,6 +3,7 @@ using UnityEditor;
 
 namespace innocent
 {
+    
     public enum AnimationActivationMode
     {
         SET_BOOL,

@@ -18,17 +18,15 @@ namespace innocent
         #endregion
         #region Properties
         ThirdPersonCharacterController thirdPersonCharacter;
-        Character character;
         Animator animator;
 
         public AnimationActivator[] animationActivators;
-        public Transform aimRotation;
+        Transform aimRotation;
         string buttonNameToShoot = ConfiguredButtonNames.SHOOT;
         float lastJumpTimeInSeconds;
         #endregion
         #region constants
         const string 
-            PlayerTag = "Player",
             EnemyTag = "enemy",
             AgonyLayerName = "Agony",
             PistolLayerName = "Pistol Layer",
@@ -36,26 +34,39 @@ namespace innocent
             ShootTriggerName = "Shoot";
         #endregion
 
+        #region Mono Behaviour
         void CacheReferences()
         {
+            var character = gameController.character;
+            aimRotation = character.TargetRotationTransform;
             lastJumpTimeInSeconds = Time.time;
-            character = GameObject.FindGameObjectWithTag(PlayerTag).GetComponent<Character>();
-            animator = GameObject.FindGameObjectWithTag(PlayerTag).GetComponent<Animator>();
-            thirdPersonCharacter = GameObject.FindGameObjectWithTag(PlayerTag).GetComponent<ThirdPersonCharacterController>();
+            animator = character.GetComponent<Animator>();
+            thirdPersonCharacter = gameController.character.GetComponent<ThirdPersonCharacterController>();
             AnimationActivator.animator = animator;
             foreach (var animationActivator in animationActivators)
-                animationExecutorDelegate += animationActivator.Activation;
+                if(animationActivator!=null)
+                    animationExecutorDelegate += animationActivator.Activation;
         }
 
-        void AdamSpecificAnimationsActivation()
+        void DoSomethingOnCollision(Collision collision)
+        {
+            if (collision.gameObject.tag == EnemyTag)
+            {
+                //TriggerAnimationWithEvent("isDead", true);
+            }
+        }
+        #endregion
+
+        #region IGameSystem
+        void ExecutionPerFrame()
         {
             Aim();
-            Shoot();
+            //Shoot();
             CheckIfTheCharacterIsOnTheGround();
             Jump();
             ExecuteConfiguredAnimations();
-            
         }
+        #endregion
 
         void CheckIfTheCharacterIsOnTheGround()
         {
@@ -71,22 +82,17 @@ namespace innocent
             animator?.SetFloat("VerticalInput", Input.GetAxis(ConfiguredButtonNames.VerticalAxisName));
         }
 
-        void doSomethingOnCollision(Collision collision)
-        {
-            if (collision.gameObject.tag == EnemyTag)
-            {
-                //TriggerAnimationWithEvent("isDead", true);
-            }
-        }
         void Shoot()
         {
             if (Input.GetButtonDown(buttonNameToShoot))
                 animator?.SetTrigger(ShootTriggerName);
         }
+
         void ExecuteConfiguredAnimations()
         {
             animationExecutorDelegate?.Invoke();
         }
+
         void Jump()
         {
             if (Input.GetKeyDown(KeyCode.Space) 
@@ -97,16 +103,19 @@ namespace innocent
                 animator?.SetTrigger(JumpTriggerName);
             }
         }
+
         bool IsRunning()
         {
             return IsWalking() && Input.GetKey(KeyCode.LeftShift);
         }
+
         bool IsWalking()
         {
             return 
                 (Input.GetAxis(ConfiguredButtonNames.HorizontalAxisName) != 0 
                 || Input.GetAxis(ConfiguredButtonNames.VerticalAxisName) != 0);
         }
+
         public void IncreaseAgonyLevelOnAnimationActivation()
         {
             if (animator.GetLayerWeight(animator.GetLayerIndex(PistolLayerName)) == 1)
@@ -125,6 +134,7 @@ namespace innocent
                 animator.SetLayerWeight(agonyLayerIndex, actualLevel);
             }
         }
+
         private IEnumerator ReduceInsanity(float waitTime)
         {
             int agonyLayerIndex = animator.GetLayerIndex(AgonyLayerName);

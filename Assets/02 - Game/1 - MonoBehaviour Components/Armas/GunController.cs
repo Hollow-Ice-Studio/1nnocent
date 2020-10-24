@@ -8,7 +8,7 @@ namespace innocent
     [RequireComponent(typeof(AudioSource))]
     public class GunController : MonoBehaviour
     {
-        [SerializeField] Gun gun;
+        [SerializeField] GunScriptableObject gun;
         [SerializeField] Transform bulletHole;
 
         AudioSource audioSource;

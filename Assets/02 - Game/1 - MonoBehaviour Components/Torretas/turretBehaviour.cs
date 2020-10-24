@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
-public class turretBehaviour : MonoBehaviour
+public class TurretBehaviour : MonoBehaviour
 {
     [SerializeField]
     Transform playerReference;
@@ -14,10 +14,10 @@ public class turretBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        /*var lineRenderer = GetComponent<LineRenderer>();
+        var lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.useWorldSpace = false;
         lineRenderer.SetPosition(1, Vector3.forward * 10);
-        lineRenderer.startWidth = 0.1f;*/
+        lineRenderer.startWidth = 0.1f;
         StartCoroutine(Shoot(shootingFrequency));
     }
 

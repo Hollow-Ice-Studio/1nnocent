@@ -9,7 +9,6 @@ namespace innocent
     {
         [SerializeField] GameObject victoriousPlayer;
         public int currentTargets = 0, totalTargets = 3;
-
         private string NotificationName = Notification.VICTORY_INC_SCORE;
 
         #region Mono Behaviour
@@ -24,6 +23,7 @@ namespace innocent
             => CheckVictoryCondition();
         #endregion
 
+        #region Custom Methods
         public void CheckVictoryCondition()
         {
             IncreaseTarget();
@@ -39,5 +39,6 @@ namespace innocent
             }
             this.PostNotification(Notification.HUD_WRITE, text);
         }
+        #endregion
     }
 }

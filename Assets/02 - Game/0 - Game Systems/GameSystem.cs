@@ -8,6 +8,11 @@ namespace innocent
 
         public GameController GameController { get; set; }
 
+        protected virtual void Awake()
+        {
+            gameController = GetComponentInParent<GameController>();
+        }
+
         public virtual void LogicRoutine()
         {
             
@@ -18,10 +23,6 @@ namespace innocent
             
         }
 
-        protected virtual void Awake()
-        {
-            gameController = GetComponentInParent<GameController>();
-        }
     }
 }
 

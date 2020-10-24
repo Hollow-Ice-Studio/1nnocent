@@ -13,15 +13,17 @@ namespace innocent
         #region MonoBehaviour
         void Start() => CacheReferences();
 
+        void OnDestroy() => this.RemoveObserver(PlayAnimationOnNotification, NotificationName);
+
+        void OnCollisionEnter(Collision collision) => DoSomethingOnCollision(collision);
+
         void OnEnable() => this.AddObserver(PlayAnimationOnNotification, NotificationName);
 
         void OnDisable() => this.RemoveObserver(PlayAnimationOnNotification, NotificationName);
-
-        void OnCollisionEnter(Collision collision) => doSomethingOnCollision(collision);
         #endregion
 
         #region IGameSystem
-        public override void LogicRoutine() => AdamSpecificAnimationsActivation();
+        public override void LogicRoutine() => ExecutionPerFrame();
         #endregion
         
         #region Notification Handler

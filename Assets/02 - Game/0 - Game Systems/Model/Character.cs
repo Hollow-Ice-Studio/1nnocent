@@ -10,21 +10,17 @@ namespace innocent
     {
         #region Properties
         Animator _characterAnimator;
+        public Transform TargetRotationTransform;
+        public float LifeValue;
         public Animator CharacterAnimator { get => _characterAnimator;}
         #endregion
 
         #region MonoBehaviour
-        void Start()
-        {
-            Build();
-        }
+        void Start() => CacheReferences();
         #endregion
 
-        #region CustomMethods
-        void Build()
-        {
-            _characterAnimator = GetComponent<Animator>();
-        }
+        #region Custom Methods
+        void CacheReferences() => _characterAnimator = GetComponent<Animator>();
         #endregion
         
     }
