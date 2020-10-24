@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 778904806}
   m_Layer: 0
-  m_Name: target
+  m_Name: TargetRotation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -466,7 +466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b97335d4606c824abd147ad36b1464e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GunTargetTransform: {fileID: 1961448370}
+  TargetRotationTransform: {fileID: 778904806}
   LifeValue: 2
 --- !u!114 &299482890
 MonoBehaviour:
