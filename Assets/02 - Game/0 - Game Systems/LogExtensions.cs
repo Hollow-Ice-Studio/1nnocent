@@ -8,7 +8,11 @@ public static class LogExtensions
         return $"<color={richTextColor}>{text}</color>";
     }
 
-    public static void LogSystemAdded(this GameObject owner, string gameSystemName)
+    public static void LogWithColor(this Object owner, object obj, string colorname)
+    {
+        Debug.Log($"{setColor(colorname, obj.ToString())}");
+    }
+    public static void LogSystemAdded(this Object owner, string gameSystemName)
     {
         Debug.Log($"{setColor("silver","Added System:")}{setColor("lime", gameSystemName)}");
     }
