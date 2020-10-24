@@ -18,6 +18,9 @@ public class EnemySpawner : MonoBehaviour
 
     void Spawn()
     {
-        Instantiate(enemyPrefab, transform.localPosition, transform.rotation);
+        GameObject enemyObj = Instantiate(enemyPrefab, transform.localPosition, transform.rotation);
+        enemyObj.name = $"Enemy {name}";
+        
+        enemyObj.layer = LayerMask.NameToLayer("Enemy");
     }
 }
