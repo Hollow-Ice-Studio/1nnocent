@@ -5,7 +5,7 @@ using UnityEngine;
 namespace innocent
 {
     [CreateAssetMenu(fileName = "Gun", menuName = "Onennocent/Gun", order = 1)]
-    public class Gun : ScriptableObject
+    public class GunScriptableObject : ScriptableObject
     {
         public string
             description;
