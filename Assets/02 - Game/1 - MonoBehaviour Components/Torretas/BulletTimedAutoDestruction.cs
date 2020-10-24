@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimedAutoDestruction : MonoBehaviour
+public class BulletTimedAutoDestruction : MonoBehaviour
 {
     [SerializeField]
     [Range(0,5)]
