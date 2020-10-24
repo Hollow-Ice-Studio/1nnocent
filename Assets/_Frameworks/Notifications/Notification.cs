@@ -6,10 +6,15 @@ namespace innocent
     {
         //HUD System
         public const string HUD_WRITE = "HudSystemNotification.Write";
+        public const string HUD_HURT = "HudSystemNotification.Hurt";
+        public const string HUD_INSANITY = "HudSystemNotification.Insanity";
         //Animation System
         public const string ANIMATION_PLAY = "AnimationSystemNotification.Play";
         //VictoryCondition System
         public const string VICTORY_INC_SCORE = "VictoryCondition.IncrementScore";
+        //Audio System
+        public const string AUDIO_PLAY = "AudioSystem.Play";
+        public const string SOUND_EFFECT_PLAY = "AudioSystem.SFX";
         // State Machine
         public const string ENTER_INVENTORY_STATE_NOTIFICATION = "StateNotification.OpenInventory";
         public const string EXIT_INVENTORY_STATE_NOTIFICATION  = "StateNotificaiton.CloseInventory";
