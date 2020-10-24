@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e632c2719bbead5479c1ab141ca68093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxVelocity: 0
   Espinhos: {fileID: 3365632961341734673}
 --- !u!1 &3365632961341734673
 GameObject:
@@ -169,7 +170,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8aa04079c094be7499ee7c3874f5825e, type: 2}
+  - {fileID: 2100000, guid: 5f3891b92b9f6384aac6ce648bea2081, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
