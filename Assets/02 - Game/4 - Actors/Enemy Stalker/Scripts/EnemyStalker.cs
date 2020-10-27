@@ -24,12 +24,15 @@ public class EnemyStalker : MonoBehaviour
     [SerializeField] private EnemyState currentState;
     public EnemyState CurrentState { get { return currentState; } }
 
+
     [SerializeField] private List<Weapon> availableWeapons;
+    public List<Weapon> AvailableWeapons { get { return availableWeapons; } }
     private void Awake()
     {
         CheckComponents();
         navMeshAI.PlayerObj = playerObj;
-        ScanWeapons();
+        navMeshAI.Owner = this;
+        // ScanWeapons();
     }
 
     void CheckComponents()
@@ -55,13 +58,23 @@ public class EnemyStalker : MonoBehaviour
 
     private void Update()
     {
+        ScanWeapons();
         PublishState();
         EvaluateActions();
     }
 
-    private void ScanWeapons() {
+    private void ScanWeapons()
+    {
+        /*
+        Num mundo ideal em que o prazo não estivesse tão apertado 
+        vocês poderiam criar uma classe MapArea que lista todos os objetos 
+        dentro da area (inimigos, armas, etc) e transmite essas informações 
+        para essas classes (esse método, por exemplo, poderia ser movido para MapArea e 
+        distribuir a referencia da lista de armas para os inimigos)
+        */
         availableWeapons = GameObject.FindGameObjectsWithTag("Weapon").ToList()
-        .Where(obj => {
+        .Where(obj =>
+        {
             Weapon weapon = obj.GetComponent<Weapon>();
             return weapon != null && weapon.MapSection == mapSection;
         })
@@ -71,24 +84,20 @@ public class EnemyStalker : MonoBehaviour
 
     private void EvaluateActions()
     {
-        if (enemyWeapon.Weapon == null)
+        if (enemyWeapon.CurrentWeapon == null)
         {
             UpdateState(EnemyState.FIND_WEAPON);
             return;
         }
 
-        if (navMeshAI.Arrived && arenaCollider.PlayerOnTheRange)
+        if (arenaCollider.PlayerOnTheRange)
         {
             UpdateState(EnemyState.STALK);
             return;
         }
 
-        if (navMeshAI.Arrived && !arenaCollider.PlayerOnTheRange)
-        {
-            UpdateState(EnemyState.SCOUT);
-            return;
-        }
-
+        UpdateState(EnemyState.SCOUT);
+        return;
     }
 
     private void UpdateState(EnemyState newState)

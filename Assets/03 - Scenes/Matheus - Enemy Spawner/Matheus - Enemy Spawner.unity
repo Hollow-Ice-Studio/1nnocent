@@ -8129,9 +8129,9 @@ GameObject:
   m_Component:
   - component: {fileID: 213840809}
   - component: {fileID: 213840810}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Grab Collider
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34589,7 +34589,7 @@ GameObject:
   - component: {fileID: 1002010187}
   m_Layer: 0
   m_Name: Meshes
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36973,7 +36973,7 @@ GameObject:
   - component: {fileID: 1105041523}
   m_Layer: 0
   m_Name: Detection Collider
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53754,7 +53754,7 @@ GameObject:
   - component: {fileID: 1694061126}
   - component: {fileID: 1694061125}
   m_Layer: 0
-  m_Name: Enemy Glock (1)
+  m_Name: Enemy Glock 2
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53772,6 +53772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165ecabe94b43ff4786d3c0a9f3eb3c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
   mapSection: 0
 --- !u!108 &1694061126
 Light:
@@ -66914,9 +66915,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2111889200}
   - component: {fileID: 2111889201}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Grab Collider
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68502,7 +68503,7 @@ GameObject:
   - component: {fileID: 7065460020755438048}
   - component: {fileID: 5673439121611040605}
   m_Layer: 0
-  m_Name: Enemy Glock
+  m_Name: Enemy Glock 1
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68520,6 +68521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165ecabe94b43ff4786d3c0a9f3eb3c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
   mapSection: 0
 --- !u!1001 &5760786990843955729
 PrefabInstance:

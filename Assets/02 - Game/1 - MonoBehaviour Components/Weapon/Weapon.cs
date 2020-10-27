@@ -4,7 +4,8 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour, IWeapon
 {
-    protected GameObject owner;
+    [SerializeField] protected GameObject owner;
+    public GameObject Owner { get { return owner; } set { owner = value; } }
     protected SphereCollider grabCollider;
     protected CapsuleCollider detectionCollider;
 
