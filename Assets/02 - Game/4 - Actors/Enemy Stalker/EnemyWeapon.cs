@@ -15,9 +15,9 @@ public class EnemyWeapon : MonoBehaviour
         this.tag = ENEMY_WEAPON_TAG;
         grabCollider = GetComponent<SphereCollider>();
     }
-
     private void OnTriggerEnter(Collider other)
     {
+        
         Debug.Log($"Enemy {transform.parent.name} Other Collider {other.name}");
         if (other.tag == "Weapon")
         {

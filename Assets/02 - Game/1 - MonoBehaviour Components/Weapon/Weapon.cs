@@ -16,7 +16,6 @@ public abstract class Weapon : MonoBehaviour, IWeapon
     protected virtual void Awake()
     {
         CheckComponents();
-
     }
 
     protected virtual void CheckComponents()
@@ -25,4 +24,6 @@ public abstract class Weapon : MonoBehaviour, IWeapon
         if (detectionCollider == null)
             throw new MissingComponentException("Adicione um Capsule Collider como filho deste objeto");
     }
+
+    public virtual void Attack(GameObject targetObj) { }
 }
