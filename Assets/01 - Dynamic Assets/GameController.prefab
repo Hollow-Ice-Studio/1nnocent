@@ -53,6 +53,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3427914263506230172}
     m_Modifications:
+    - target: {fileID: -2860619103089732270, guid: 2fee6fe817cdb18448c789d2848520dc,
+        type: 3}
+      propertyPath: aimRotation
+      value: 
+      objectReference: {fileID: 4881316036948946908}
     - target: {fileID: 6407553164522271514, guid: 2fee6fe817cdb18448c789d2848520dc,
         type: 3}
       propertyPath: m_LocalPosition.x
