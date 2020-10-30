@@ -3,7 +3,27 @@ guid: a898b6679fb8c4b42a0cbaedcee02f36
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Macacao
+    second: {fileID: 2100000, guid: 56cd19f1bacb36040a112700436926a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mascara
+    second: {fileID: 2100000, guid: 6bd034255178dd64fbd829ab2a3e5437, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pele
+    second: {fileID: 2100000, guid: c698a2ad1e792854eb510e0fa8733910, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sapato
+    second: {fileID: 2100000, guid: b76734a3913d7514287fb95b47a47f26, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
