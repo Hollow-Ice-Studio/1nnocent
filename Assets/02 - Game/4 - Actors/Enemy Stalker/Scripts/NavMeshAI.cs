@@ -50,11 +50,12 @@ public class NavMeshAI : MonoBehaviour
     {
 
         Weapon destination = owner.AvailableWeapons
-        .FirstOrDefault(weapon => weapon.Owner == null);
+        .OrderBy(w => Vector3.SqrMagnitude(w.transform.localPosition - transform.position))
+        .Where(w => w.Owner == null)
+        .FirstOrDefault();
 
         if (destination != null)
         {
-            Debug.Log($"Enemy {owner.name} Destination: {destination.name}");
             agent.SetDestination(destination.gameObject.transform.localPosition);
         }
 
@@ -62,12 +63,18 @@ public class NavMeshAI : MonoBehaviour
 
     void Stalk()
     {
-        agent.SetDestination(playerObj.transform.localPosition);
+        if (playerObj != null)
+            agent.SetDestination(playerObj.transform.localPosition);
     }
 
     void Scout()
     {
         // Rotina placeholder, deve ser substituida por lógica de patrulhar área
         FindWeapon();
+    }
+
+    Vector3 CompareDistance(Vector3 target, Vector3 owner)
+    {
+        return new Vector3(Mathf.Abs(target.x - owner.x), Mathf.Abs(target.y - owner.y), Mathf.Abs(target.z - owner.z));
     }
 }

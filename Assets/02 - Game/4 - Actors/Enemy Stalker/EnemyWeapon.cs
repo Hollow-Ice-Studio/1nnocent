@@ -17,8 +17,6 @@ public class EnemyWeapon : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        
-        Debug.Log($"Enemy {transform.parent.name} Other Collider {other.name}");
         if (other.tag == "Weapon")
         {
             EvaluateWeapon(other.gameObject);
@@ -28,7 +26,6 @@ public class EnemyWeapon : MonoBehaviour
     void EvaluateWeapon(GameObject weaponObj)
     {
         Weapon weapon = weaponObj.GetComponentInParent<Weapon>();
-        Debug.Log($"Weapon name {weapon.name}");
         if (weapon.Owner == null && currentWeapon == null) {
             currentWeapon = weapon;
             weapon.Owner = this.gameObject;

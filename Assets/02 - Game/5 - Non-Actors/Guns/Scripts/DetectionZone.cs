@@ -22,7 +22,6 @@ public class DetectionZone : MonoBehaviour
     {
         if (other.tag == "Player" && owner != null)
         {
-            Debug.Log("Player in Detection Zone");
             owner.Attack(other.gameObject);
         }
     }

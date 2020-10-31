@@ -32,7 +32,6 @@ public class EnemyStalker : MonoBehaviour
         CheckComponents();
         navMeshAI.PlayerObj = playerObj;
         navMeshAI.Owner = this;
-        // ScanWeapons();
     }
 
     void CheckComponents()
@@ -66,7 +65,7 @@ public class EnemyStalker : MonoBehaviour
     private void ScanWeapons()
     {
         /*
-        Num mundo ideal em que o prazo não estivesse tão apertado 
+        Sugestão de melhoria:
         vocês poderiam criar uma classe MapArea que lista todos os objetos 
         dentro da area (inimigos, armas, etc) e transmite essas informações 
         para essas classes (esse método, por exemplo, poderia ser movido para MapArea e 

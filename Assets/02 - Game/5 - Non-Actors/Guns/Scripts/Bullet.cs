@@ -13,6 +13,9 @@ public class Bullet : MonoBehaviour
     private Vector3 originPos = Vector3.zero;
     public Vector3 OriginPos { set { originPos = value; } }
 
+    [Range(1, 100)]
+    [SerializeField] float FORCE = 5f;
+
     private void Awake()
     {
         cc = GetComponent<CapsuleCollider>();
@@ -23,12 +26,11 @@ public class Bullet : MonoBehaviour
         if (rb == null)
             throw new MissingComponentException("Adicione um Rigid Body ao objeto");
 
-        Debug.Log($"Origin position {transform.localPosition}");
     }
 
     private void FixedUpdate()
     {
-        
+
         if (targetPos != Vector3.zero)
         {
             Shoot();
@@ -38,8 +40,11 @@ public class Bullet : MonoBehaviour
 
     public void Shoot()
     {
-        rb.AddForce((targetPos - transform.localPosition) * 5, ForceMode.Force);
+        rb.AddForce((targetPos - transform.localPosition) * FORCE, ForceMode.Impulse);
     }
 
-
+    private void OnCollisionEnter(Collision other)
+    {
+        Destroy(gameObject);
+    }
 }

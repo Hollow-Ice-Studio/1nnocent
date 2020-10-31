@@ -18,23 +18,19 @@ public class ArenaCollider : MonoBehaviour
 
     private void OnTrigerStay(Collider other)
     {
-        Debug.Log($"other Collider {other.gameObject}");
         if (other.tag == TARGET_TAG) {
-            Debug.Log("Player on the range");
             playerOnTheRange = true;
         }
     }
 
     private void OnTriggerEnter(Collider other) {
         if (other.tag == TARGET_TAG) {
-            Debug.Log("Player on the range");
             playerOnTheRange = true;
         }
     }
 
     private void OnTriggerExit(Collider other) {
         if (other.tag == TARGET_TAG) {
-            Debug.Log("Player OUT of range");
             playerOnTheRange = false;
         }
         
