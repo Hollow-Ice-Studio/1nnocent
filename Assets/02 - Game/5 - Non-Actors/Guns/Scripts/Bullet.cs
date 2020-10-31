@@ -25,15 +25,15 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         if (rb == null)
             throw new MissingComponentException("Adicione um Rigid Body ao objeto");
-
+        
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
 
         if (targetPos != Vector3.zero)
         {
-            Shoot();
+            // Shoot();
         }
 
     }
