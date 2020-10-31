@@ -7,6 +7,8 @@ TagManager:
   - Target
   - Enemy
   - Arena
+  - Weapon
+  - Enemy Weapon
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - PostProcessing
   - Enemy
   - Static
-  - Trigger
+  - Grab
   - 
   - 
   - 
