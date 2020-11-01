@@ -337,11 +337,11 @@ GameObject:
   - component: {fileID: 2223710885223669064}
   - component: {fileID: 299482891}
   - component: {fileID: 7697328793335612680}
-  - component: {fileID: 299482894}
   - component: {fileID: 2053895148}
   - component: {fileID: 299482890}
   - component: {fileID: 483167560}
   - component: {fileID: 483167561}
+  - component: {fileID: 1876928233}
   m_Layer: 0
   m_Name: Adam
   m_TagString: Player
@@ -415,45 +415,6 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!23 &299482894
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2223710885216284296}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!114 &2053895148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,6 +474,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DyingModelPrefab: {fileID: 9189064888097181319, guid: 1da8d1aaf8b06d645811c4cdfc05b804,
     type: 3}
+--- !u!114 &1876928233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2223710885216284296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf1eb6ea7ac51ae4f994d98096e3e518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationActivators:
+  - {fileID: 11400000, guid: 92dde5de5faee434da5b8d6c7a7fc925, type: 2}
 --- !u!1 &2223710885216284298
 GameObject:
   m_ObjectHideFlags: 0
@@ -1957,7 +1932,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9cedb256045bac8419223b45b813809f, type: 2}
+  - {fileID: -8914260533824241892, guid: 29beea73405a0574b90d1d0534023fcf, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

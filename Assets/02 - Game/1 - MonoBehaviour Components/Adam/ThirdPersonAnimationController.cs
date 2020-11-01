@@ -1,63 +1,55 @@
-﻿using innocent;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TheLiquidFire.Notifications;
 using UnityEngine;
 
 namespace innocent
 {
-    public enum AdamAnimationState
+    public class ThirdPersonAnimationController : MonoBehaviour
     {
-
-    }
-    public partial class CharacterAnimationSystem : GameSystem
-    {
-        #region Delegates
+        #region Properties
+        //Delegates
         delegate void AnimationExecutorDelegate();
         AnimationExecutorDelegate animationExecutorDelegate;
-        #endregion
-        #region Properties
-        ThirdPersonCharacterController thirdPersonCharacter;
-        Animator animator;
-
-        public AnimationActivator[] animationActivators;
-        Transform aimRotation;
-        string buttonNameToShoot = ConfiguredButtonNames.SHOOT;
-        float lastJumpTimeInSeconds;
-        #endregion
-        #region constants
-        const string 
+        //Constants
+        const string
             EnemyTag = "enemy",
             AgonyLayerName = "Agony",
             PistolLayerName = "Pistol Layer",
             JumpTriggerName = "Jump",
             ShootTriggerName = "Shoot";
+        //private
+        ThirdPersonCharacterController thirdPersonCharacter;
+        Animator animator;
+        //public
+        public AnimationActivator[] animationActivators;
+        Transform aimRotation;
+        string buttonNameToShoot = ConfiguredButtonNames.SHOOT;
+        float lastJumpTimeInSeconds;
         #endregion
 
-        #region Mono Behaviour
+        #region MonoBehaviour Event Functions
+        void Start() => CacheReferences();
+        void Update() => ExecutionPerFrame();
+        void OnCollisionEnter(Collision collision) => DoSomethingOnCollision(collision);
+        #endregion
+
+        #region Start
         void CacheReferences()
         {
-            var character = gameController.character;
+            var character = GetComponent<Character>();
             aimRotation = character.TargetRotationTransform;
             lastJumpTimeInSeconds = Time.time;
             animator = character.GetComponent<Animator>();
-            thirdPersonCharacter = gameController.character.GetComponent<ThirdPersonCharacterController>();
+            thirdPersonCharacter = character.GetComponent<ThirdPersonCharacterController>();
             AnimationActivator.animator = animator;
             foreach (var animationActivator in animationActivators)
-                if(animationActivator!=null)
+                if (animationActivator != null)
                     animationExecutorDelegate += animationActivator.Activation;
-        }
-
-        void DoSomethingOnCollision(Collision collision)
-        {
-            if (collision.gameObject.tag == EnemyTag)
-            {
-                //TriggerAnimationWithEvent("isDead", true);
-            }
         }
         #endregion
 
-        #region IGameSystem
+        #region Update
         void ExecutionPerFrame()
         {
             Aim();
@@ -68,6 +60,17 @@ namespace innocent
         }
         #endregion
 
+        #region On Collision
+        void DoSomethingOnCollision(Collision collision)
+        {
+            if (collision.gameObject.tag == EnemyTag)
+            {
+                //TriggerAnimationWithEvent("isDead", true);
+            }
+        }
+        #endregion
+
+        #region Custom methods
         void CheckIfTheCharacterIsOnTheGround()
         {
             //mudar pra play, o fluxo deve simplesmente pular pra OnAir se não esta em contato com o chão
@@ -95,8 +98,8 @@ namespace innocent
 
         void Jump()
         {
-            if (Input.GetKeyDown(KeyCode.Space) 
-                && thirdPersonCharacter.IsGrounded 
+            if (Input.GetKeyDown(KeyCode.Space)
+                && thirdPersonCharacter.IsGrounded
                 && Time.time > (lastJumpTimeInSeconds + 1f))
             {
                 lastJumpTimeInSeconds = Time.time;
@@ -111,8 +114,8 @@ namespace innocent
 
         bool IsWalking()
         {
-            return 
-                (Input.GetAxis(ConfiguredButtonNames.HorizontalAxisName) != 0 
+            return
+                (Input.GetAxis(ConfiguredButtonNames.HorizontalAxisName) != 0
                 || Input.GetAxis(ConfiguredButtonNames.VerticalAxisName) != 0);
         }
 
@@ -148,6 +151,6 @@ namespace innocent
                 yield return new WaitForSeconds(waitTime);
             }
         }
+        #endregion
     }
 }
-
