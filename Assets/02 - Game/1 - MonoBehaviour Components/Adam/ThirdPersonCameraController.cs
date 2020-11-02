@@ -28,7 +28,8 @@ public class ThirdPersonCameraController : MonoBehaviour
        
         Debug.DrawRay(target.position, -target.forward * cameraDistance, Color.red);
         RaycastHit objectDetetected;
-        Physics.Raycast(target.position, -target.forward, out objectDetetected, cameraDistance);
+        
+        Physics.Raycast(target.position, -target.forward, out objectDetetected, cameraDistance, LayerMask.NameToLayer("Trigger"));
         if (objectDetetected.distance > 0.5)
         {
             transform.position = objectDetetected.point;

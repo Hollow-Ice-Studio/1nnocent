@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,60 +10,40 @@ namespace innocent
     public class GameController : MonoBehaviour
     {
         #region Const
-        private const string SYSTEMS_PATH = "Prefabs/Game Systems/";
+        public const string SYSTEMS_PATH = "GameSystems/";
+        public const string PlayerTag = "Player";
         #endregion
 
         #region Properties
         protected List<IGameSystem> activeSystems { get; private set; }
         protected Dictionary<string, GameSystem> gameSystems = new Dictionary<string, GameSystem>();
-        private StateMachine stateMachine;
-        public StateMachine StateMachine
-        {
-            get
-            {
-                if (stateMachine == null)
-                    stateMachine = new StateMachine();
-
-                return stateMachine;
-            }
-        }
-
-        private Transform systemHolder;
+        Transform systemHolder;
         #endregion
 
         #region MonoBehaviour
-        void Awake()
-        {
-            Build();
-        }
-
-        void Update()
-        {
-            ExecuteActiveSystemsLogicRoutine();
-        }
-
-        void FixedUpdate()
-        {
-            ExecuteActiveSystemsPhysicsRoutine();
-        }
+        void Awake() => BuildGameSystems();
+        void Reset() => BuildGameSystems();
+        void Update() => ExecuteActiveSystemsLogicRoutine();
+        void FixedUpdate() => ExecuteActiveSystemsPhysicsRoutine();
         #endregion
 
         #region Custom methods
-        void Build()
+        void BuildGameSystems()
         {
-            systemHolder = GetComponentInChildren<Transform>();
-            GameFactory.Create(this);
-            DisableAllGameSystems();
-            StateMachine.Initialize(new IdleState(this, StateMachine));
+            systemHolder = GetComponent<Transform>();
+            InstatiateAllGameSystems();
         }
+
         void DisableAllGameSystems()
         {
             for (int i = 0; i < GetSystems().Count - 1; i++)
-            {
                 GetSystems()[i].gameObject.SetActive(false);
-            }
         }
-        
+
+        public List<GameSystem> GetSystems()
+        {
+            return gameSystems.Values.ToList();
+        }
 
         void ExecuteActiveSystemsPhysicsRoutine()
         {
@@ -78,68 +59,33 @@ namespace innocent
                 system.LogicRoutine();
         }
 
-        
+        #endregion
 
-        public void InstantiateSystems<T>() where T : IGameSystem
+        public void InstatiateAllGameSystems()
         {
-            try
+            this.LogWithColor($"{nameof(SYSTEMS_PATH)}: {SYSTEMS_PATH}","green");
+            this.LogWithColor($"Quantidade de gamesystems: {Resources.LoadAll<GameSystem>($"{SYSTEMS_PATH}").Length} ","green");
+            foreach (var gameObjectFoundInTheFolder in Resources.LoadAll<GameObject>($"{SYSTEMS_PATH}"))
             {
-                GameSystem gameSystem = GetComponentInChildren<T>() as GameSystem;
-
-                if (gameSystem == null)
+                try
                 {
-                    GameObject gameSystemObj = Instantiate(Resources.Load<GameObject>($"{SYSTEMS_PATH}{typeof(T).Name}"), systemHolder);
-                    gameSystem = gameSystemObj.GetComponent<GameSystem>();
+                    GameSystem gameSystem = GetComponentInChildren(gameObjectFoundInTheFolder.GetComponent<GameSystem>().GetType()) as GameSystem;
+                    if (gameSystem == null)
+                    {
+                        GameObject gameSystemObj = DynamicAssets.Instantiate(gameObjectFoundInTheFolder, systemHolder);
+                        gameSystem = gameSystemObj.GetComponent<GameSystem>();
+                        gameObject.LogWithColor(gameSystem, "red");
+                    }
+                    this.LogSystemAdded(gameObjectFoundInTheFolder.name);
+                    gameSystems.Add(gameObjectFoundInTheFolder.name, gameSystem);
                 }
-                gameObject.LogSystemAdded(typeof(T).Name);
-                gameSystems.Add(typeof(T).Name, gameSystem);
-            }
-            catch
-            {
-                throw new GameSystemInstantiationException(typeof(T).Name);
-            }
-            
-        }
-
-        public T GetSystem<T>() where T : GameSystem
-        {
-            var key = typeof(T).Name;
-            return gameSystems.ContainsKey(key) ? (T)gameSystems[key] : default(T);
-        }
-
-        public List<GameSystem> GetSystems()
-        {
-            return gameSystems.Values.ToList();
-        }
-        #endregion
-
-        #region StateMachine
-        public void ChangeState(State newState)
-        {
-            StateMachine.ChangeState(newState);
-        }
-
-        public State GetCurrentState()
-        {
-            return StateMachine.GetCurrentState();
-        }
-
-        public bool CurrentStateIs<T>(T state)
-        {
-            return GetCurrentState().GetType().Equals(state);
-        }
-
-        #endregion
-
-        public static class GameFactory
-        {
-            public static void Create(GameController gameController)
-            {
-                gameController.InstantiateSystems<CharacterAnimationSystem>();
-                gameController.InstantiateSystems<HudSystem>();
-                gameController.InstantiateSystems<VictoryConditionSystem>();
+                catch(Exception ex)
+                {
+                    Debug.Log(ex);
+                }
             }
         }
+
     }
 }
 
