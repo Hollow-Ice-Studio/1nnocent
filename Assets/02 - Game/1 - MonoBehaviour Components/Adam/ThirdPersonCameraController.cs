@@ -12,6 +12,7 @@ public class ThirdPersonCameraController : MonoBehaviour
     public float cameraDistance, cameraAdjustmentSpeed;
     float InitialCameraDistance;
     private Camera cameraComponent;
+    Animator animator;
 
     void Start()
     {
@@ -19,12 +20,13 @@ public class ThirdPersonCameraController : MonoBehaviour
         InitialCameraDistance = transform.position.z;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        animator = GetComponentInParent<Animator>();
     }
     void Update()
     {
         cameraComponent.fieldOfView = 
             (Input.GetMouseButton(1)) ? zoomingFieldOfView : 
-            (Input.GetKey(KeyCode.LeftShift)) ? runningFieldOfView : defaultFieldOfView;
+            (animator.GetBool("isRunning")) ? runningFieldOfView : defaultFieldOfView;
        
         Debug.DrawRay(target.position, -target.forward * cameraDistance, Color.red);
         RaycastHit objectDetetected;
