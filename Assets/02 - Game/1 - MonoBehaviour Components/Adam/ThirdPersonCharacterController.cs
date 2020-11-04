@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 namespace innocent
 {
@@ -13,6 +14,7 @@ namespace innocent
         public bool IsGrounded;
         float beamdistance;
         Rigidbody rig;
+        Animator animator;
         #endregion
 
         #region Mono Behaviour
@@ -30,14 +32,17 @@ namespace innocent
         {
             rig = GetComponent<Rigidbody>();
             beamdistance = transform.localScale.y + .2f;
+            animator = GetComponent<Animator>();
+            this.transform.rotation = Quaternion.identity;
         }
         void PlayerMovement()
         {
             float z_move = Input.GetAxis(ConfiguredButtonNames.VerticalAxisName);
             float x_move = Input.GetAxis(ConfiguredButtonNames.HorizontalAxisName);
+            
             Vector3 vect3 = new Vector3(x_move, 0f, z_move);
             vect3.Normalize();
-            if (Input.GetButton(ConfiguredButtonNames.RUN))
+            if (animator.GetBool("isRunning"))
             {
                 transform.Translate(vect3 * Time.deltaTime * speed * 2, Space.Self);
             }
