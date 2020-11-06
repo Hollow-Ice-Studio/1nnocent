@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 namespace innocent
 {
-    [RequireComponent(typeof(AnimatorController))]
+    [RequireComponent(typeof(Animator))]
     public class Character : MonoBehaviour
     {
         #region Properties
