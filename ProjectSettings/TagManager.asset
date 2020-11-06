@@ -9,6 +9,8 @@ TagManager:
   - Arena
   - Weapon
   - Enemy Weapon
+  - Trigger
+  - Garden
   layers:
   - Default
   - TransparentFX

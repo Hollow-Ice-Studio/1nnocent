@@ -6,7 +6,6 @@ using UnityEngine.AI;
 
 public class NavMeshAI : MonoBehaviour
 {
-
     private NavMeshAgent agent;
     private Vector3 defaultDestinationPoint;
     private GameObject playerObj;
@@ -23,7 +22,6 @@ public class NavMeshAI : MonoBehaviour
         agent = GetComponentInParent<NavMeshAgent>();
         if (agent == null)
             throw new MissingComponentException("Adicione um NavMeshAgent ao objeto");
-
         // defaultDestinationPoint = new Vector3(110, 5, 205);
     }
 
@@ -48,23 +46,21 @@ public class NavMeshAI : MonoBehaviour
 
     void FindWeapon()
     {
-
         Weapon destination = owner.AvailableWeapons
-        .OrderBy(w => Vector3.SqrMagnitude(w.transform.localPosition - transform.position))
+        .OrderBy(w => Vector3.SqrMagnitude(w.transform.position - transform.position))
         .Where(w => w.Owner == null)
         .FirstOrDefault();
 
         if (destination != null)
         {
-            agent.SetDestination(destination.gameObject.transform.localPosition);
+            agent.SetDestination(destination.gameObject.transform.position);
         }
-
     }
 
     void Stalk()
     {
         if (playerObj != null)
-            agent.SetDestination(playerObj.transform.localPosition);
+            agent.SetDestination(playerObj.transform.position);
     }
 
     void Scout()

@@ -65,7 +65,7 @@ namespace innocent
         }
         void DisplayInsanityMarkOnNotification(object sender, object args=null)
         {
-            StartCoroutine(TemporaryInsanityDisplay(2));
+            StartCoroutine(TemporaryInsanityDisplay(3,6));
         }
         #endregion
 
@@ -84,16 +84,17 @@ namespace innocent
             }
         }
 
-        private IEnumerator TemporaryInsanityDisplay(float waitTime)
+        private IEnumerator TemporaryInsanityDisplay(float waitTime,float timeBeforeHealing)
         {
+            
             InsanityColor.a = 1;
+            InsanityMarkRawImage.color = InsanityColor;
+            yield return new WaitForSeconds(timeBeforeHealing);
             float divisor = 5;
             float dividedTime = (waitTime / divisor);
-            float alpha = 0;
             for (float i = 0; i < waitTime; i += dividedTime)
             {
-                alpha += 1 / 5;
-                InsanityColor.a = alpha;
+                InsanityColor.a -= (1 / divisor);
                 InsanityMarkRawImage.color = InsanityColor;
                 yield return new WaitForSeconds(dividedTime);
             }
