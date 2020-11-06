@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Paredes_Corredor : MonoBehaviour
@@ -39,6 +41,12 @@ public class Paredes_Corredor : MonoBehaviour
         {
             CloseWay(true);
         }
+
+        FindObjectOfType<AudioManager>().Play("MovingDoors");
+        FindObjectOfType<AudioManager>().Play("MovingDoors2");
+        FindObjectOfType<AudioManager>().Play("MovingDoors3");
+        FindObjectOfType<AudioManager>().Play("MovingDoors4");
+        
     }
 
     void CloseWay(bool state)
