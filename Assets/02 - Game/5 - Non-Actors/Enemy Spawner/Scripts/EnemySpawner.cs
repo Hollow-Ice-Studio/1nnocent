@@ -12,15 +12,13 @@ public class EnemySpawner : MonoBehaviour
         enemyPrefab = Resources.Load<GameObject>(PREFAB_PATH);
         if (enemyPrefab == null)
             throw new MissingReferenceException("Verifique se há um prefab valido no caminho fornecido");
-
         Spawn();
     }
 
     void Spawn()
     {
         GameObject enemyObj = Instantiate(enemyPrefab, transform.localPosition, transform.rotation);
-        enemyObj.name = $"Enemy {name}";
-        
+        enemyObj.name = $"[Enemy] {name}";
         enemyObj.layer = LayerMask.NameToLayer("Enemy");
     }
 }

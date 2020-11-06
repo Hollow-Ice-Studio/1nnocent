@@ -53,7 +53,7 @@ namespace innocent
         void ExecutionPerFrame()
         {
             Aim();
-            //Shoot();
+            Shoot();
             CheckIfTheCharacterIsOnTheGround();
             Jump();
             ExecuteConfiguredAnimations();
@@ -118,13 +118,15 @@ namespace innocent
                 (Input.GetAxis(ConfiguredButtonNames.HorizontalAxisName) != 0
                 || Input.GetAxis(ConfiguredButtonNames.VerticalAxisName) != 0);
         }
-
-        public void IncreaseAgonyLevelOnAnimationActivation()
+     
+        public void IncreaseAgonyLevelOnAnimationActivation(bool toMaximum=false)
         {
             if (animator.GetLayerWeight(animator.GetLayerIndex(PistolLayerName)) == 1)
             {
                 int agonyLayerIndex = animator.GetLayerIndex(AgonyLayerName);
                 float actualLevel = animator.GetLayerWeight(agonyLayerIndex);
+                if (toMaximum)
+                    actualLevel = 2f;
                 if (actualLevel >= 0.1f)
                 {
                     actualLevel = 1;
@@ -135,12 +137,17 @@ namespace innocent
                     actualLevel += 0.01f;
                 }
                 animator.SetLayerWeight(agonyLayerIndex, actualLevel);
+                
             }
         }
 
         private IEnumerator ReduceInsanity(float waitTime)
         {
+            var tpcc = this.GetComponent<ThirdPersonCharacterController>();
             int agonyLayerIndex = animator.GetLayerIndex(AgonyLayerName);
+            tpcc.speed = 0.5f;
+            tpcc.jumpHeight = 0.5f;
+            yield return new WaitForSeconds(12);
             for (int i = 0; i <= 5; i++)
             {
                 float actualLevel = animator.GetLayerWeight(agonyLayerIndex);
@@ -150,6 +157,8 @@ namespace innocent
                 animator.SetLayerWeight(agonyLayerIndex, actualLevel);
                 yield return new WaitForSeconds(waitTime);
             }
+            tpcc.speed = tpcc.initialSpeed;
+            tpcc.jumpHeight = tpcc.initialJumpHeight;
         }
         #endregion
     }

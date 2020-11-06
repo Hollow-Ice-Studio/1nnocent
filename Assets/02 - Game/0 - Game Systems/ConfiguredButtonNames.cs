@@ -6,10 +6,12 @@ namespace innocent
     {
         //Os nomes devem estar configurados no input manager
         public static string
+            ENTER = "ENTER",
             SHOOT = "SHOOT",
             CROUNCH = "CROUNCH",
             RUN = "RUN",
             VerticalAxisName = "Vertical",
             HorizontalAxisName = "Horizontal";
+            
     }
 }

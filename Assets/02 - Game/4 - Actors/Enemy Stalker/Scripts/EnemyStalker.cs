@@ -12,13 +12,15 @@ public enum EnemyState
 }
 public class EnemyStalker : MonoBehaviour
 {
-    private const string ARENA_TAG = "Arena";
-    private const string PLAYER_TAG = "Player";
+    private const string 
+        ARENA_TAG = "Arena",
+        PLAYER_TAG = "Player";
 
     [Tooltip("Área do mapa em que o inimigo surge")]
     [SerializeField] private MapSection mapSection;
     private NavMeshAI navMeshAI;
-    private EnemyWeapon enemyWeapon;
+    private EnemyStalkerAnimatorController animatorController;
+    public EnemyWeaponAtHand enemyWeapon;
     private ArenaCollider arenaCollider;
     private GameObject playerObj;
     [SerializeField] private EnemyState currentState;
@@ -32,15 +34,20 @@ public class EnemyStalker : MonoBehaviour
         CheckComponents();
         navMeshAI.PlayerObj = playerObj;
         navMeshAI.Owner = this;
+        animatorController.Owner = this;
     }
 
     void CheckComponents()
     {
+        animatorController = GetComponentInChildren<EnemyStalkerAnimatorController>();
+        if (animatorController == null)
+            throw new MissingComponentException("Adicione um EnemyStalkerAnimatorController como componente deste objeto");
+
         navMeshAI = GetComponentInChildren<NavMeshAI>();
         if (navMeshAI == null)
-            throw new MissingComponentException("Adicione um NavMeshAI como filho deste objeto");
+            throw new MissingComponentException("Adicione um NavMeshAI como componente deste objeto");
 
-        enemyWeapon = GetComponentInChildren<EnemyWeapon>();
+        enemyWeapon = GetComponentInChildren<EnemyWeaponAtHand>();
         if (enemyWeapon == null)
             throw new MissingComponentException("Adicione um EnemyWeapon como filho deste objeto");
 
@@ -83,7 +90,7 @@ public class EnemyStalker : MonoBehaviour
 
     private void EvaluateActions()
     {
-        if (enemyWeapon.CurrentWeapon == null)
+        if (enemyWeapon.CurrentWeapon == null && availableWeapons.Count > 0)
         {
             UpdateState(EnemyState.FIND_WEAPON);
             return;

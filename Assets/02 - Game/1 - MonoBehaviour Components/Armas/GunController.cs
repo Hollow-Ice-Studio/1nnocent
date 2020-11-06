@@ -77,7 +77,19 @@ namespace innocent
                     //todo: tranformar em propriedade privada e cacheada
                     MaterialPropertyBlock materialPropertyBlock = new MaterialPropertyBlock();
                     materialPropertyBlock.SetColor("_Color", new Color(0, 1, 0));
-                    collidedCollider.GetComponent<MeshRenderer>().SetPropertyBlock(materialPropertyBlock);
+                    var meshRend = collidedCollider.GetComponent<MeshRenderer>();
+                    if(meshRend !=null)
+                        meshRend?.SetPropertyBlock(materialPropertyBlock);
+                    var animator = collidedCollider.GetComponent<Animator>();
+                    if (animator != null)
+                    {
+                        animator?.SetTrigger("Die");
+                        FindObjectOfType<AudioManager>().Play("Depois de matar");
+                        //Gambi: consertar no futuro
+                        var adam = FindObjectOfType<ThirdPersonAnimationController>();
+                        adam.IncreaseAgonyLevelOnAnimationActivation(true);
+                        this.PostNotification(Notification.HUD_INSANITY);
+                    }
                     this.PostNotification(Notification.VICTORY_INC_SCORE);
                 }
             }

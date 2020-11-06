@@ -15,6 +15,10 @@ namespace innocent
         float beamdistance;
         Rigidbody rig;
         Animator animator;
+        [HideInInspector]
+        public float
+            initialSpeed = 1,
+            initialJumpHeight = 1;
         #endregion
 
         #region Mono Behaviour
@@ -34,6 +38,8 @@ namespace innocent
             beamdistance = transform.localScale.y + .2f;
             animator = GetComponent<Animator>();
             this.transform.rotation = Quaternion.identity;
+            initialSpeed = speed;
+            initialJumpHeight = jumpHeight;
         }
         void PlayerMovement()
         {
