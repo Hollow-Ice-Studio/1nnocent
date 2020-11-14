@@ -29,6 +29,7 @@ namespace innocent
         #endregion
 
         #region MonoBehaviour Event Functions
+        void Reset() => CacheReferences();
         void Start() => CacheReferences();
         void Update() => ExecutionPerFrame();
         void OnCollisionEnter(Collision collision) => DoSomethingOnCollision(collision);
