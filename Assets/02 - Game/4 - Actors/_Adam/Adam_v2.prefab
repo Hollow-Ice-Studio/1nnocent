@@ -32,6 +32,7 @@ Transform:
   - {fileID: 2392910298828578207}
   - {fileID: 8095731692208827885}
   - {fileID: 2812039450301680915}
+  - {fileID: 5869296138484191245}
   m_Father: {fileID: 8029638993019001164}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -29.860836, y: -41.903347, z: -16.14945}
@@ -1722,6 +1723,36 @@ Transform:
   m_Father: {fileID: 6528389758759825104}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 57.057407, y: 3.235593, z: -0.6884122}
+--- !u!1 &6099415563175939880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5869296138484191245}
+  m_Layer: 0
+  m_Name: GunPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5869296138484191245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6099415563175939880}
+  m_LocalRotation: {x: -0.6219595, y: 0.29184672, z: 0.3087513, w: 0.6577724}
+  m_LocalPosition: {x: -0.013, y: 0.198, z: -0.001}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_Children: []
+  m_Father: {fileID: 6528389758759825104}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: -86.791, y: -0.127, z: 50.410004}
 --- !u!1 &6111979869280616474
 GameObject:
   m_ObjectHideFlags: 0
@@ -2233,8 +2264,8 @@ GameObject:
   - component: {fileID: 727097184513584453}
   - component: {fileID: 4853207465947888305}
   m_Layer: 0
-  m_Name: Adam_v3
-  m_TagString: Untagged
+  m_Name: Adam_v2
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2318,7 +2349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  jumpHeight: 5
+  jumpHeight: 1.5
   IsGrounded: 0
   initialSpeed: 1
   initialJumpHeight: 1
@@ -2334,10 +2365,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 125d79778ac648a419690e63a3aad93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handPosition: {fileID: 0}
+  handPosition: {fileID: 5869296138484191245}
   currentWeapon: {fileID: 0}
-  pickableVersion: {fileID: 0}
-  animatorLayerName: Pistol Layer
+  pickableVersion: {fileID: 3220518650418752972, guid: 321787cc47f5d07409ebf4a61197bc53,
+    type: 3}
+  animatorLayerName: 
 --- !u!114 &587274654840170568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2350,7 +2382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ebc2dc8cd5ef84fb26d21ff23d1407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DyingModelPrefab: {fileID: 9189064888097181319, guid: 1da8d1aaf8b06d645811c4cdfc05b804,
+  DyingModelPrefab: {fileID: 6490743837917519047, guid: c6087d5fffad79045ab1a8f9c420df87,
     type: 3}
 --- !u!114 &727097184513584453
 MonoBehaviour:

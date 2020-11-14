@@ -8,6 +8,7 @@ namespace innocent
         public static string
             ENTER = "ENTER",
             SHOOT = "SHOOT",
+            AIM = "AIM",
             CROUNCH = "CROUNCH",
             RUN = "RUN",
             VerticalAxisName = "Vertical",
