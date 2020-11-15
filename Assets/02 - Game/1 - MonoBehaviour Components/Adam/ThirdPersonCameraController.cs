@@ -7,7 +7,7 @@ public class ThirdPersonCameraController : MonoBehaviour
     public Transform player, target;
     public float rotationSpeed;
     public KeyCode frontCameraKey;
-    float mouseX, mouseY;
+    float mouseX=100, mouseY;//São essas variaveis que modifica o estado inicial de rotação
     public float defaultFieldOfView = 50, zoomingFieldOfView = 45, runningFieldOfView = 70;
     public float cameraDistance, cameraAdjustmentSpeed;
     float InitialCameraDistance;
