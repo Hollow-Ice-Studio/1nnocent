@@ -50,7 +50,7 @@ namespace innocent
             vect3.Normalize();
             if (animator.GetBool("isRunning"))
             {
-                transform.Translate(vect3 * Time.deltaTime * speed * 2, Space.Self);
+                transform.Translate(vect3 * Time.deltaTime * speed * 4, Space.Self);
             }
             else
             {
