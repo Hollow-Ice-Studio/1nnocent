@@ -21,11 +21,8 @@ namespace innocent
         #endregion
 
         #region Custom Methods
-        void SearchDependentGameObjects()
-        {
+        void SearchDependentGameObjects() =>
             TargetRotationTransform = GameObject.Find(targetRotationName)?.transform;
-            CacheReferences();
-        }
         void CacheReferences() => _characterAnimator = GetComponent<Animator>();
         #endregion
         

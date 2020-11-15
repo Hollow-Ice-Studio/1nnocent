@@ -10,7 +10,7 @@ namespace innocent
     {
         [SerializeField] GunScriptableObject gun;
         [SerializeField] Transform bulletHole;
-        LineRenderer laser;
+
         AudioSource audioSource;
         const string
             EnemyLayerMask = "Enemy",
@@ -19,16 +19,12 @@ namespace innocent
 
         #region Mono Behaviour
         void Awake() => Build();
-        void Start() => CacheReferences();
+        
         void Update()
         {
             Debug.DrawRay(bulletHole.position, transform.forward * 10, Color.green);
             if (Input.GetButtonDown(ConfiguredButtonNames.SHOOT))
                 TryShoot();
-            if (Input.GetButton(ConfiguredButtonNames.AIM))
-                laser.enabled = true;
-            else
-                laser.enabled = false;
         }
         #endregion
 
@@ -36,11 +32,6 @@ namespace innocent
         {
             audioSource = GetComponent<AudioSource>();
         }
-        void CacheReferences()
-        {
-            laser = GetComponent<LineRenderer>();
-        }
-        
         public void PlayShootSound()
         {
             audioSource.clip = gun.shootingSound;
@@ -51,7 +42,7 @@ namespace innocent
             audioSource.clip = gun.reloadingSound;
             audioSource.Play();
         }
-        
+
         void TryShoot()
         {
             if (gun.currentAmmo <= 0)
