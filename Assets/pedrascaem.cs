@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class pedrascaem : MonoBehaviour
 {
@@ -9,7 +10,9 @@ public class pedrascaem : MonoBehaviour
     
 
     Animator suporteAnim;
-    
+
+    [SerializeField]
+    string sceneName;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +30,15 @@ public class pedrascaem : MonoBehaviour
         {
             Fallrocks(true);
         }
+    }
+
+    void OnTriggerExit(Collider coll)
+    {
+        if (coll.gameObject.tag == "Player")
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+        
     }
 
     void Fallrocks(bool state)
