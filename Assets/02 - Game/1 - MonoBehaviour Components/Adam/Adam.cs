@@ -1,23 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace innocent
 {
+    
+
+    //Classe base de todos os personagens
+    public abstract class Character : MonoBehaviour
+    {
+        public float LifeValue = 2;
+        public Animator _characterAnimator;
+        public Animator CharacterAnimator { get => _characterAnimator; }
+
+        protected void CacheReferences() => _characterAnimator = GetComponent<Animator>();
+    }
+
+    //Script Responsável pela manutenção de Atributos do personagem Adam
     [RequireComponent(typeof(Animator))]
-    public class Character : MonoBehaviour
+    public class Adam : Character
     {
         #region Properties
         string targetRotationName = "TargetRotation";
-        Animator _characterAnimator;
         public Transform TargetRotationTransform;
-        public float LifeValue = 2;
-        public Animator CharacterAnimator { get => _characterAnimator;}
         #endregion
 
         #region MonoBehaviour
         void Reset() => SearchDependentGameObjects();
-        void Start() => CacheReferences();
+        void Start() => base.CacheReferences();
         #endregion
 
         #region Custom Methods
@@ -26,9 +34,8 @@ namespace innocent
             TargetRotationTransform = GameObject.Find(targetRotationName)?.transform;
             CacheReferences();
         }
-        void CacheReferences() => _characterAnimator = GetComponent<Animator>();
         #endregion
-        
+
     }
 }
 
