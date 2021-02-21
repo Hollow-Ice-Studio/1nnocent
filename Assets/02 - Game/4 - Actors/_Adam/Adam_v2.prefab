@@ -2263,6 +2263,7 @@ GameObject:
   - component: {fileID: 587274654840170568}
   - component: {fileID: 727097184513584453}
   - component: {fileID: 4853207465947888305}
+  - component: {fileID: 2394725085737818274}
   m_Layer: 0
   m_Name: Adam_v2
   m_TagString: Player
@@ -2318,8 +2319,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b97335d4606c824abd147ad36b1464e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetRotationTransform: {fileID: 7597874124604470974}
   LifeValue: 2
+  _characterAnimator: {fileID: 0}
+  TargetRotationTransform: {fileID: 7597874124604470974}
 --- !u!54 &8802808288533116152
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2349,6 +2351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  runningSpeed: 4
   jumpHeight: 1.5
   IsGrounded: 0
   initialSpeed: 1
@@ -2409,10 +2412,24 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 1.791028
+  m_Radius: 0.2
+  m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.90600014, z: 0}
+--- !u!136 &2394725085737818274
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8860747098281565088}
+  m_Material: {fileID: 13400000, guid: fb180412ac396d3429eadec397948508, type: 2}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 1.5014967
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9809353, z: 0}
 --- !u!1 &8919191998564902649
 GameObject:
   m_ObjectHideFlags: 0
