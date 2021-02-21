@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-namespace innocent {
+﻿using UnityEngine;
+
+namespace innocent
+{
     [RequireComponent(typeof(Animator))]
     public class ThirdPersonWeaponSlotsController : MonoBehaviour
     {
