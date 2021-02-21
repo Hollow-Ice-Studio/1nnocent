@@ -1,19 +1,20 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using TheLiquidFire.Notifications;
-
-namespace innocent
-{
-    [RequireComponent(typeof(Adam))]
+using UnityEngine.UI;
+namespace innocent {
+    [RequireComponent(typeof(Character))]
     public class ThirdPersonDamageController : MonoBehaviour
     {
         [Header("Adicione uma referência")]
         [SerializeField]
         GameObject DyingModelPrefab;
-        Adam Character;
+        Character Character;
 
         void Start()
         {
-            Character = GetComponent<Adam>();
+            Character = GetComponent<Character>();
             if (DyingModelPrefab == null)
                 throw new System.Exception("Adicione uma prefab no script");
         }

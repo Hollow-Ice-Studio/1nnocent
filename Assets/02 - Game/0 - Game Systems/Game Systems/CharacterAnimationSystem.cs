@@ -28,7 +28,7 @@ namespace innocent
         #region Start
         void CacheReferences()
         {
-            animator = animator != null ? animator : (FindObjectOfType<Adam>()?.GetComponent<Animator>());
+            animator = animator != null ? animator : (FindObjectOfType<Character>()?.GetComponent<Animator>());
         }
         #endregion
 

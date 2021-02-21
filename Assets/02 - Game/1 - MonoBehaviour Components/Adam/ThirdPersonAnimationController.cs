@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using TheLiquidFire.Notifications;
 using UnityEngine;
 
 namespace innocent
@@ -36,7 +38,7 @@ namespace innocent
         #region Start
         void CacheReferences()
         {
-            var character = GetComponent<Adam>();
+            var character = GetComponent<Character>();
             aimRotation = character.TargetRotationTransform;
             lastJumpTimeInSeconds = Time.time;
             animator = character.GetComponent<Animator>();

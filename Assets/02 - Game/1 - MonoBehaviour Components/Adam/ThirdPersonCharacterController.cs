@@ -1,5 +1,7 @@
-﻿using UnityEngine;
-
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Security.Cryptography;
+using UnityEngine;
 namespace innocent
 {
     [RequireComponent(typeof(Rigidbody))]
@@ -8,10 +10,8 @@ namespace innocent
         #region Properties
         public float
             speed = 1,
-            runningSpeed = 4,
             jumpHeight = 1;
         public bool IsGrounded;
-        private Vector3 velocity;
         float beamdistance;
         Rigidbody rig;
         Animator animator;
@@ -41,24 +41,23 @@ namespace innocent
             initialSpeed = speed;
             initialJumpHeight = jumpHeight;
         }
-
         void PlayerMovement()
         {
             float z_move = Input.GetAxis(ConfiguredButtonNames.VerticalAxisName);
             float x_move = Input.GetAxis(ConfiguredButtonNames.HorizontalAxisName);
-
-            Vector3 vect3 = Vector3.ClampMagnitude(
-                (transform.forward * z_move) + (transform.right * x_move)
-                , 1);
-
-            velocity = (vect3 * speed);
+            
+            Vector3 vect3 = new Vector3(x_move, 0f, z_move);
+            vect3.Normalize();
             if (animator.GetBool("isRunning"))
-                rig.velocity = velocity*runningSpeed + new Vector3(0, rig.velocity.y,0);
+            {
+                transform.Translate(vect3 * Time.deltaTime * speed * 4, Space.Self);
+            }
             else
-                rig.velocity = velocity + new Vector3(0, rig.velocity.y,0);
+            {
+                transform.Translate(vect3 * Time.deltaTime * speed, Space.Self);
+            }
+
         }
-
-
 
         //Esse método é ativado a partir da animação de pulo
         private void PlayerJumpTriggeredByAnimation()
