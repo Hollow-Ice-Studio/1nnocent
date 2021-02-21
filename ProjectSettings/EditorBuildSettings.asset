@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/03 - Scenes/CenarioDeTestes.unity
     guid: 0c50370da149f5f4f8ae4e0397f0910a
   - enabled: 0
-    path: Assets/03 - Scenes/SampleScene.unity
+    path: Assets/03 - Scenes/Sala de testes/SalaDeTestes.unity
     guid: 5e3bd2689c990304e8f61b7d3dce022b
   m_configObjects: {}
