@@ -9,17 +9,16 @@ namespace innocent
     {
         
         [SerializeField]
-        string sceneName;
-
-        float timeToSkipInSeconds;
+        string SceneName;
+        float TimeToSkipInSeconds;
 
         void Start() =>
-            timeToSkipInSeconds = GetComponent<AudioSource>().clip.length;
+            TimeToSkipInSeconds = GetComponent<AudioSource>().clip.length;
         
         void Update()
         {
-            if (Time.time > timeToSkipInSeconds)
-                SceneManager.LoadScene(sceneName);
+            if (Time.time > TimeToSkipInSeconds)
+                SceneManager.LoadScene(SceneName);
         }
     }
 }

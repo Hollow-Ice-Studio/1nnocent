@@ -17,7 +17,7 @@ namespace innocent
             JumpTriggerName = "Jump",
             ShootTriggerName = "Shoot";
         //private
-        ThirdPersonCharacterController thirdPersonCharacter;
+        Adam adam;
         Animator animator;
         //public
         public AnimationActivator[] animationActivators;
@@ -40,7 +40,7 @@ namespace innocent
             aimRotation = character.TargetRotationTransform;
             lastJumpTimeInSeconds = Time.time;
             animator = character.GetComponent<Animator>();
-            thirdPersonCharacter = character.GetComponent<ThirdPersonCharacterController>();
+            adam = character.GetComponent<Adam>();
             AnimationActivator.animator = animator;
             foreach (var animationActivator in animationActivators)
                 if (animationActivator != null)
@@ -73,7 +73,7 @@ namespace innocent
         void CheckIfTheCharacterIsOnTheGround()
         {
             //mudar pra play, o fluxo deve simplesmente pular pra OnAir se não esta em contato com o chão
-            animator?.SetBool("isOnGround", thirdPersonCharacter.IsGrounded);
+            animator?.SetBool("isOnGround", adam.IsGrounded);
         }
 
         void Aim()
@@ -98,7 +98,7 @@ namespace innocent
         void Jump()
         {
             if (Input.GetKeyDown(KeyCode.Space)
-                && thirdPersonCharacter.IsGrounded
+                && adam.IsGrounded
                 && Time.time > (lastJumpTimeInSeconds + 1f))
             {
                 lastJumpTimeInSeconds = Time.time;
@@ -142,10 +142,10 @@ namespace innocent
 
         private IEnumerator ReduceInsanity(float waitTime)
         {
-            var tpcc = this.GetComponent<ThirdPersonCharacterController>();
+            var adam = this.GetComponent<Adam>();
             int agonyLayerIndex = animator.GetLayerIndex(AgonyLayerName);
-            tpcc.speed = 0.5f;
-            tpcc.jumpHeight = 0.5f;
+            adam.speed = 0.5f;
+            adam.jumpHeight = 0.5f;
             yield return new WaitForSeconds(12);
             for (int i = 0; i <= 5; i++)
             {
@@ -156,8 +156,8 @@ namespace innocent
                 animator.SetLayerWeight(agonyLayerIndex, actualLevel);
                 yield return new WaitForSeconds(waitTime);
             }
-            tpcc.speed = tpcc.initialSpeed;
-            tpcc.jumpHeight = tpcc.initialJumpHeight;
+            adam.speed = adam.initialSpeed;
+            adam.jumpHeight = adam.initialJumpHeight;
         }
         #endregion
     }

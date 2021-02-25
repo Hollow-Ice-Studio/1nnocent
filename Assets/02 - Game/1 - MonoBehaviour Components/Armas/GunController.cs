@@ -93,7 +93,7 @@ namespace innocent
                     if (animator != null)
                     {
                         animator?.SetTrigger("Die");
-                        FindObjectOfType<AudioManager>().Play("Depois de matar");
+                        //FindObjectOfType<AudioManager>().Play("Depois de matar");
                         //Gambi: consertar no futuro
                         var adam = FindObjectOfType<ThirdPersonAnimationController>();
                         adam.IncreaseAgonyLevelOnAnimationActivation(true);
