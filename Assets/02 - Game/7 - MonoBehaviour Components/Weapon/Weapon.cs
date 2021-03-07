@@ -8,7 +8,7 @@ public abstract class Weapon : MonoBehaviour, IWeapon
     public GameObject Owner { get { return owner; } set { owner = value; } }
     protected SphereCollider grabCollider;
     protected CapsuleCollider detectionCollider;
-
+    public AudioSource audioSource;
     [Tooltip("Área do mapa em que a arma está")]
     [SerializeField] protected MapSection mapSection;
     public MapSection MapSection { get { return mapSection; } }
@@ -23,6 +23,9 @@ public abstract class Weapon : MonoBehaviour, IWeapon
         detectionCollider = GetComponentInChildren<CapsuleCollider>();
         if (detectionCollider == null)
             throw new MissingComponentException("Adicione um Capsule Collider como filho deste objeto");
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            throw new MissingComponentException("Adicione um Audio Source como filho deste objeto");
     }
 
     public virtual void Attack(GameObject targetObj) { }

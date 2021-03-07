@@ -27,6 +27,7 @@ public class EnemyGun : Weapon
 
         if (targetObj != null)
         {
+            audioSource.Play();
             BuildProjectile(targetObj);
         }
     }

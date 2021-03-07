@@ -7,14 +7,16 @@ namespace innocent
 {
     public class DetectorEspinhos : MonoBehaviour
     {
-        [SerializeField] AudioClip EfeitoSonoro;
-        [SerializeField] GameObject Espinhos;
-        [SerializeField] float maxVelocity;
+        AudioSource audioSource;
+        [Range(0,2f)]
+        [SerializeField]
+            float audioDelay = 0.6f;
         Animator espinhosAnim;
 
         void Start()
         {
-            espinhosAnim = Espinhos.GetComponent<Animator>();
+            espinhosAnim = GetComponentInParent<Animator>();
+            audioSource  = GetComponent<AudioSource>();
         }
 
         private void OnTriggerEnter(Collider collider)
@@ -38,7 +40,7 @@ namespace innocent
         {
             this.LogWithColor("Armadilha ativou", "red");
             espinhosAnim.SetTrigger("Ativar");
-            this.PostNotification(Notification.SOUND_EFFECT_PLAY, EfeitoSonoro);
+            audioSource.PlayDelayed(audioDelay);
         }
     }
 }

@@ -10,10 +10,7 @@ namespace innocent
         delegate void AnimationExecutorDelegate();
         AnimationExecutorDelegate animationExecutorDelegate;
         //Constants
-        const string
-            EnemyTag = "enemy",
-            AgonyLayerName = "Agony",
-            PistolLayerName = "Pistol Layer",
+        public const string
             JumpTriggerName = "Jump",
             ShootTriggerName = "Shoot";
         //private
@@ -62,7 +59,7 @@ namespace innocent
         #region On Collision
         void DoSomethingOnCollision(Collision collision)
         {
-            if (collision.gameObject.tag == EnemyTag)
+            if (collision.gameObject.tag == ConfiguredTags.ENEMY)
             {
                 //TriggerAnimationWithEvent("isDead", true);
             }
@@ -120,9 +117,9 @@ namespace innocent
      
         public void IncreaseAgonyLevelOnAnimationActivation(bool toMaximum=false)
         {
-            if (animator.GetLayerWeight(animator.GetLayerIndex(PistolLayerName)) == 1)
+            if (animator.GetLayerWeight(animator.GetLayerIndex(ConfiguredLayers.PISTOL)) == 1)
             {
-                int agonyLayerIndex = animator.GetLayerIndex(AgonyLayerName);
+                int agonyLayerIndex = animator.GetLayerIndex(ConfiguredLayers.AGONY);
                 float actualLevel = animator.GetLayerWeight(agonyLayerIndex);
                 if (toMaximum)
                     actualLevel = 2f;
@@ -143,7 +140,7 @@ namespace innocent
         private IEnumerator ReduceInsanity(float waitTime)
         {
             var adam = this.GetComponent<Adam>();
-            int agonyLayerIndex = animator.GetLayerIndex(AgonyLayerName);
+            int agonyLayerIndex = animator.GetLayerIndex(ConfiguredLayers.AGONY);
             adam.speed = 0.5f;
             adam.jumpHeight = 0.5f;
             yield return new WaitForSeconds(12);

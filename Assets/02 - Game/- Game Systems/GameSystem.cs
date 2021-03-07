@@ -1,27 +1,39 @@
-﻿using UnityEngine;
+﻿using TheLiquidFire.Notifications;
+using UnityEngine;
 
 namespace innocent
 {
-    public abstract class GameSystem : MonoBehaviour, IGameSystem
+    //ᚨᛒᚲᛞᛖᚠᚷᚺᛁᛃᚲᛚᛗᚾᛟᛈᚲᚱᛊᛏᚢᚢᚹXᛁᛉ×ᚦ×ᛜ
+    //abkdefghijklmnopkrstuuwXiz'þ'ŋ
+    //https://valhyr.com/pages/rune-translator
+
+    public interface IGameSystem
     {
-        protected GameController gameController;
+        void CacheReferences();
+        void AddObservers();
+        void RemoveObservers();
+    }
 
-        public GameController GameController { get; set; }
+    public abstract class GameSystem : MonoBehaviour
+    {
+        protected string NotificationName;
+        #region MonoBehaviour Event Functions
+        void Reset() => CacheReferences();
+        void Start() => CacheReferences();
+        void OnEnable()  => AddObserver();
+        void OnDisable() => RemoveObserver();
+        void OnDestroy() => RemoveObserver();
+        #endregion
 
-        protected virtual void Awake()
-        {
-            gameController = GetComponentInParent<GameController>();
-        }
+        protected virtual void CacheReferences() { }
+        protected virtual void NotificationHandler(object sender, object args) {}
 
-        public virtual void LogicRoutine()
-        {
-            
-        }
-
-        public virtual void PhysicsRoutine()
-        {
-            
-        }
+        void AddObserver()
+        => this.AddObserver(NotificationHandler, NotificationName);
+        
+        void RemoveObserver()
+        => this.RemoveObserver(NotificationHandler, NotificationName);
+        
 
     }
 }

@@ -5,7 +5,7 @@ namespace innocent
     public static class ConfiguredButtonNames
     {
         //Os nomes devem estar configurados no input manager
-        public static string
+        public const string
             ENTER = "ENTER",
             SHOOT = "SHOOT",
             AIM = "AIM",

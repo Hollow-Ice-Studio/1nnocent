@@ -11,24 +11,32 @@ namespace innocent
         GameObject currentWeapon, pickableVersion;
         public string animatorLayerName;
         Animator animator;
+        AnimatorOverrideController animatorOverrideController;
+
         void Awake()
         {
             animator = GetComponent<Animator>();
+            animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
         }
 
         void LateUpdate()
         {
             if (currentWeapon != null && Input.GetMouseButton(1))
             {
-                animator.SetLayerWeight(animator.GetLayerIndex("Pistol Layer"), 1);
-                animator.SetLayerWeight(animator.GetLayerIndex("Recoil"), 1);
+
+                //animator.SetLayerWeight(animator.GetLayerIndex("Pistol Layer"), 1);
+                //animator.SetLayerWeight(animator.GetLayerIndex("Recoil"), 1);
                 GunController gc = currentWeapon?.GetComponent<GunController>();
+                animator.runtimeAnimatorController = gc.gun.AnimatorOverride;
+                animator.Update(0f);
                 gc.enabled = true;
             }
             else
             {
-                animator.SetLayerWeight(animator.GetLayerIndex("Pistol Layer"), 0);
-                animator.SetLayerWeight(animator.GetLayerIndex("Recoil"), 0);
+                //animator.SetLayerWeight(animator.GetLayerIndex("Pistol Layer"), 0);
+                //animator.SetLayerWeight(animator.GetLayerIndex("Recoil"), 0);
+                animator.runtimeAnimatorController = animatorOverrideController;
+                animator.Update(0f);
                 if (currentWeapon != null)
                 {
                     GunController gc = currentWeapon.GetComponent<GunController>();

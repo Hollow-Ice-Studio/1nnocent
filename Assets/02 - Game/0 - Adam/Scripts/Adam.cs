@@ -2,12 +2,10 @@
 
 namespace innocent
 {
-
     //Script Responsável pela manutenção de Atributos do personagem Adam
     [RequireComponent(typeof(Animator))]
     public class Adam : MonoBehaviour
     {
-
         #region Properties
         public float LifeValue = 2;
         public Animator _characterAnimator;

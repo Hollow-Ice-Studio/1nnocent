@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad6a66ce0d943143ac8d22b7245fa7b, type: 3}
   m_Name: Glock
   m_EditorClassIdentifier: 
-  description: This is a Glock
+  description: Glock
   impulse: 50
   distance: 1000
   totalAmmo: 16
-  currentAmmo: 16
+  currentAmmo: 6
   shootingSound: {fileID: 8300000, guid: 9906c159fe5e0a94a93abfbf9e496cbb, type: 3}
   reloadingSound: {fileID: 8300000, guid: c06cd35d03c4efe46bbaa59e951f558b, type: 3}
+  bulletHole: {fileID: 3369086197320055593, guid: ea6bfbe661b997a4bb9b86e85fe622a8,
+    type: 3}
+  AnimatorOverride: {fileID: 22100000, guid: fd9baecbd30a2674cbec8835f945cc5f, type: 2}

@@ -9,20 +9,32 @@ namespace innocent
         [Header("Adicione uma referência")]
         [SerializeField]
         GameObject DyingModelPrefab;
-        Adam Character;
+        [Range(0,1000)]
+        public float limiteVerticalDoMapa;
+        Adam adam;
+        
 
         void Start()
         {
-            Character = GetComponent<Adam>();
+            adam = GetComponent<Adam>();
             if (DyingModelPrefab == null)
                 throw new System.Exception("Adicione uma prefab no script");
         }
 
+        void Update()
+        {
+            if(transform.position.y < -limiteVerticalDoMapa
+                || transform.position.y > limiteVerticalDoMapa)
+            {
+                die();
+            }
+        }
+
         void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.tag == "Enemy")
+            if (collision.gameObject.tag == ConfiguredTags.ENEMY)
             {
-                if (Character.LifeValue <= 0)
+                if (adam.LifeValue <= 0)
                     die();
                 else
                     hurt();
@@ -31,7 +43,7 @@ namespace innocent
 
         void hurt()
         {
-            Character.LifeValue--;
+            adam.LifeValue--;
             this.PostNotification(Notification.HUD_HURT);
         }
 

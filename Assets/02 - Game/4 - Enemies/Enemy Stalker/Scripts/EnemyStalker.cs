@@ -19,7 +19,7 @@ public class EnemyStalker : MonoBehaviour
     [Tooltip("Área do mapa em que o inimigo surge")]
     [SerializeField] private MapSection mapSection;
     private NavMeshAI navMeshAI;
-    private EnemyStalkerAnimatorController animatorController;
+    private EnemyStalkerAnimatorStateSwitcher animatorController;
     public EnemyWeaponAtHand enemyWeapon;
     private ArenaCollider arenaCollider;
     private GameObject playerObj;
@@ -39,7 +39,7 @@ public class EnemyStalker : MonoBehaviour
 
     void CheckComponents()
     {
-        animatorController = GetComponentInChildren<EnemyStalkerAnimatorController>();
+        animatorController = GetComponentInChildren<EnemyStalkerAnimatorStateSwitcher>();
         if (animatorController == null)
             throw new MissingComponentException("Adicione um EnemyStalkerAnimatorController como componente deste objeto");
 
