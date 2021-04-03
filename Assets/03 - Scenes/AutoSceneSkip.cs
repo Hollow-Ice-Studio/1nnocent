@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 namespace innocent
 {
@@ -12,8 +13,15 @@ namespace innocent
         string SceneName;
         float TimeToSkipInSeconds;
 
-        void Start() =>
-            TimeToSkipInSeconds = GetComponent<AudioSource>().clip.length;
+        void Start()
+        {
+            var audioSource = GetComponent<AudioSource>();
+            if(audioSource)
+                TimeToSkipInSeconds = audioSource.clip.length;
+            else
+                TimeToSkipInSeconds = (float) GetComponent<VideoPlayer>().length;
+        }
+            
         
         void Update()
         {

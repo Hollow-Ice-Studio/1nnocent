@@ -16,7 +16,7 @@ public class ArenaCollider : MonoBehaviour
             throw new MissingComponentException("Adicione um Sphere Collider ao objeto");
     }
 
-    private void OnTrigerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.tag == TARGET_TAG) {
             playerOnTheRange = true;

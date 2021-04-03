@@ -10,6 +10,7 @@ namespace innocent
         public const string HUD_INSANITY = "HudSystemNotification.Insanity";
         //Animation System
         public const string ANIMATION_PLAY = "AnimationSystemNotification.Play";
+        public const string CUTSCENE_PLAY = "CutSceneSystemNotification.Play";
         //VictoryCondition System
         public const string VICTORY_INC_SCORE = "VictoryCondition.IncrementScore";
         //Audio System

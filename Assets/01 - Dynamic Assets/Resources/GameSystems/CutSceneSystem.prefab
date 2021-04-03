@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5263881210471087648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8139238137982147085}
+  - component: {fileID: 1580246029373860504}
+  - component: {fileID: 2384502336673040358}
+  m_Layer: 0
+  m_Name: CutSceneSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8139238137982147085
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263881210471087648}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4366685, y: 0.52878714, z: 8.4325075}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &1580246029373860504
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263881210471087648}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: d68ae0aa2ebd3884f97784960970463d, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 0}
+    value: {fileID: 0}
+  - key: {fileID: 0}
+    value: {fileID: 0}
+  - key: {fileID: 5085183907973367575, guid: 351f30cee09e6d64e9cc25fcafc5d98f, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 8504141930714165431, guid: 351f30cee09e6d64e9cc25fcafc5d98f, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7530843922429852435, guid: 351f30cee09e6d64e9cc25fcafc5d98f, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 3260845912104155092, guid: 351f30cee09e6d64e9cc25fcafc5d98f, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7833956539836520516, guid: 351f30cee09e6d64e9cc25fcafc5d98f, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 4942474865196541473, guid: 351f30cee09e6d64e9cc25fcafc5d98f, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7090463726630230745, guid: 351f30cee09e6d64e9cc25fcafc5d98f, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 3373202895405207258, guid: d68ae0aa2ebd3884f97784960970463d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 1797566691067566216, guid: d68ae0aa2ebd3884f97784960970463d, type: 2}
+    value: {fileID: 0}
+  m_ExposedReferences:
+    m_References:
+    - d83bc82b7774aee42ab99096435114ff: {fileID: 0}
+--- !u!114 &2384502336673040358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263881210471087648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49598d5d1cf45334e95c7f465f774ce4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  director: {fileID: 1580246029373860504}

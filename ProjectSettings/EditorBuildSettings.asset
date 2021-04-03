@@ -6,10 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/03 - Scenes/MainScreen.unity
+    path: Assets/03 - Scenes/SplashScreen.unity
+    guid: b50987c6501e2dc4ebbc167cb09f6c4a
+  - enabled: 1
+    path: Assets/03 - Scenes/MainScene/MainScreen.unity
     guid: 99bce9ed41f357843ad1d2c4a6622269
   - enabled: 1
-    path: Assets/03 - Scenes/CenaDeTransicao.unity
+    path: "Assets/03 - Scenes/Cena de transi\xE7\xE3o/CenaDeTransicaoInicial.unity"
     guid: 08ec56645bfadde47a9b7e4763138b37
   - enabled: 1
     path: Assets/03 - Scenes/BlockageLevel.unity
@@ -18,9 +21,12 @@ EditorBuildSettings:
     path: Assets/03 - Scenes/ContinuaScene.unity
     guid: 3714100cc8f780c4a9bfcc3c8958690b
   - enabled: 0
-    path: Assets/03 - Scenes/CenarioDeTestes.unity
-    guid: 0c50370da149f5f4f8ae4e0397f0910a
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/03 - Scenes/Sala de testes/SalaDeTestes.unity
     guid: 5e3bd2689c990304e8f61b7d3dce022b
+  - enabled: 1
+    path: "Assets/03 - Scenes/BlockageLevel c\xF3pia para testes.unity"
+    guid: 22b99d4e2dd03df4391d8ad82e02ccbe
   m_configObjects: {}
